@@ -37,10 +37,10 @@ class Item(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
     description = Column(String(500))
-    picture = Column(String(250))
-    price = Column(String(8))
-    ibu = Column(String(8))
-    abv = Column(String(8))
+    picture_path = Column(String(250))
+    price = Column(Integer)
+    ibu = Column(Integer)
+    abv = Column(Integer)
     category_id = Column(Integer, ForeignKey('categories.id'))
     category = relationship(Category)
     user_id = Column(Integer, ForeignKey('users.id'))
@@ -50,12 +50,13 @@ class Item(Base):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
+            'id': self.id,
             'name': self.name,
             'description': self.description,
-            'id': self.id,
             'price': self.price,
             'ibu': self.ibu,
-            'abv': self.abv
+            'abv': self.abv,
+            'category': self.category.serialize()
         }
 
 
