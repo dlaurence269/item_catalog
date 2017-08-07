@@ -22,30 +22,30 @@ session = DBSession()
 @app.route('/') # GET - Landing page, directs routes to /beer
 @app.route('/beers') # GET - List of all beer
 def showAllBeers():
-    return "This is the beer landing page."
+    return render_template('showAllBeers.html')
 
 # 2. Show specific beer 
 @app.route('/beers/<int:item_id>') # GET - See a specific item in detail
 def showSpecificBeer(item_id):
-    return "This is a specific items' detailed page."
+    return render_template('showSpecificBeer.html')
 
 # 3. New
 # Add methods=['GET', 'POST']
 @app.route('/beers/new') # GET - View to create a new item # POST - Create a new item
 def newBeer():
-    return "This is the create new item page."
+    return render_template('newBeer.html')
 
 # 4. Edit
 # Add methods=['GET', 'POST']
 @app.route('/beers/<int:item_id>/edit') # GET - View to edit a specific item # POST - Update a specific item
 def editBeer(item_id):
-    return "This is the edit a specific item page."
+    return render_template('editBeer.html')
 
 # 5. Delete
 # Add methods=['GET', 'POST']
 @app.route('/beers/<int:item_id>/delete') # GET - View to delete a specific item (only if no popup) # POST - Delete a specific item
 def deleteBeer(item_id):
-    return "This is the delete a specific item page."
+    return render_template('deleteBeer.html')
 
 # 6. Login
 # Add methods=['GET', 'POST']
