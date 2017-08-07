@@ -3,6 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
+
 Base = declarative_base()
 
 
@@ -11,7 +12,6 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     username = Column(String(50), nullable=False)
-    picture = Column(String(250))
 
 
 class Category(Base):
@@ -37,11 +37,12 @@ class Item(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
     description = Column(String(500))
+    picture = Column(String(250))
     price = Column(String(8))
     ibu = Column(String(8))
     abv = Column(String(8))
     category_id = Column(Integer, ForeignKey('category.id'))
-    category = relationship(category)
+    category = relationship(Category)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
