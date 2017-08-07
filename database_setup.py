@@ -8,18 +8,18 @@ Base = declarative_base()
 
 
 class User(Base):
-    __tablename__ = 'user'
+    __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
     username = Column(String(50), nullable=False)
 
 
 class Category(Base):
-    __tablename__ = 'category'
+    __tablename__ = 'categories'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship(User)
 
     @property
@@ -32,7 +32,7 @@ class Category(Base):
 
 
 class Item(Base):
-    __tablename__ = 'item'
+    __tablename__ = 'items'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
@@ -41,9 +41,9 @@ class Item(Base):
     price = Column(String(8))
     ibu = Column(String(8))
     abv = Column(String(8))
-    category_id = Column(Integer, ForeignKey('category.id'))
+    category_id = Column(Integer, ForeignKey('categories.id'))
     category = relationship(Category)
-    user_id = Column(Integer, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship(User)
 
     @property
@@ -59,7 +59,7 @@ class Item(Base):
         }
 
 
-engine = create_engine('sqlite:///beers.db')
+engine = create_engine('sqlite:///beer_catalog.db')
 
 
 Base.metadata.create_all(engine)

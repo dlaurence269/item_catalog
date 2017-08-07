@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///beers.db')
+engine = create_engine('sqlite:///beer_catalog.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -19,14 +19,14 @@ session = DBSession()
 # App Routing
 
 # 1. Landing
-@app.route('/') # GET - Landing page, directs routes to /beers
-@app.route('/beers') # GET - List of all beers
-def showBeers():
-    return "This is the beers landing page."
+@app.route('/') # GET - Landing page, directs routes to /beer
+@app.route('/beers') # GET - List of all beer
+def showAllBeers():
+    return "This is the beer landing page."
 
-# 2. Item in detail 
+# 2. Show specific beer 
 @app.route('/beers/<int:item_id>') # GET - See a specific item in detail
-def showItemInDetail(item_id):
+def showSpecificBeer(item_id):
     return "This is a specific items' detailed page."
 
 # 3. New
@@ -41,7 +41,7 @@ def newBeer():
 def editBeer(item_id):
     return "This is the edit a specific item page."
 
-# 4. Delete
+# 5. Delete
 # Add methods=['GET', 'POST']
 @app.route('/beers/<int:item_id>/delete') # GET - View to delete a specific item (only if no popup) # POST - Delete a specific item
 def deleteBeer(item_id):
@@ -55,12 +55,12 @@ def login():
 
 # 7. JSON all
 @app.route('/beers/json') # GET - View JSON for all items (in alphabetical order)
-def showJSONAll():
-    return "This is the view all beers in JSON page."
+def showAllBeersJSON():
+    return "This is the view all beer in JSON page."
 
 # 8. JSON specific item
 @app.route('/beers/<int:item_id>/json') # GET - View JSON for a specific item
-def showJSONItem(item_id):
+def showSpecificBeerJSON(item_id):
     return "This is the view JSON for a specific item page."
 
 
