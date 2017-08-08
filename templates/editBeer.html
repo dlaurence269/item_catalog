@@ -5,42 +5,48 @@
     </head>
     <body>
         <h1>Edit "item_name"</h1>
+        <!-- The placeholders will be prepopulated values -->
         <form action="#" method = "#">
             <p>Name
                 </br>
-                <input type="text" name="Name" id="#" value="#">
+                <input type="text" name="Name" id="#" value="Full Beer Name">
             </p>
-            
             <p>Description
                 </br>
                 <textarea></textarea>
             </p>
-            
             <p>Picture Path
                 </br>
-                <input type="text" name="Picture Path" id="#" value="#">
+                <input type="text" name="Picture Path" id="#" value="/images/example">
             </p>
-            
             <p>Price
                 </br>
-                <input type="text" name="Price" id="#" value="#">
+                $<input type="text" name="Price" id="#" value="5.99">
             </p>
-            
             <p>IBU
                 </br>
-                <input type="number" name="IBU" min="0" max="100">
+                <input type="number" name="IBU" min="0" max="100" value="30" required="">
             </p>
-
             <p>ABV
                 </br>
-                <input type="number" name="ABV" min="0" max="100">
+                <input type="number" name="ABV" min="0" max="100" value="5" required="">
             </p>
-
             <p>Category
                 </br>
-                <input type="radio" name="Category" id="#" value="#">
+                <input type="radio" name="IPA" id="70" value="#">IPA
+                </br>
+                <input type="radio" name="Lager" id="71" value="#">Lager
+                </br>
+                <input type="radio" name="Pale Ale" id="72" value="#">Pale Ale
+                </br>
+                <input type="radio" name="Porter" id="73" value="#">Porter
+                </br>
+                <input type="radio" name="Stout" id="74" value="#">Stout
+                </br>
+                <input type="radio" name="Triple" id="75" value="#">Triple
+                </br>
+                <input type="radio" name="Wheat" id="76" value="#">Wheat
             </p>
-
             <input type="submit" name="#" id="#" value="Save Edit">
             <input type="submit" name="#" id="#" value="Cancel">
         </form> 
