@@ -1,9 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Landing Page: All Beers</title>
-    </head>
-    <body>
+<title>Landing Page: All Beers</title>
+    
+{% extends "main.html" %}
+{% block content %}
+
         <h1>This is the beer landing page.</h1>
-    </body>
-</html>
+        <div class=" col-md-12 header">
+            <div class="col-md-6 image">
+                <img src="../static/images/ibu_vs_abv.jpeg" alt="Sorry, image failed to load:(">
+            </div>
+            <div class=" col-md-5 beer categories">
+                <div class="col-md-2">
+                    <a href="">IPA</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="">Lager</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 list_of_beers">
+            <div class="col-md-3">
+                <img src="../static/images/ipa.jpg" alt="Sorry, image failed to load:(">
+            </div>
+            <div class="col-md-8">
+                <h3>Beer Name</h3>
+                <p>Short description about beer...</p>
+            </div>
+        </div>
+
+{% endblock %}
