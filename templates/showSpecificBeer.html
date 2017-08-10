@@ -28,8 +28,12 @@
             </div>
         </div>
         <div class="col-md-12 POST">
-            <input type="submit" name="#" id="#" value="Edit">
-            <input type="submit" name="#" id="#" value="Delete">
+            <a href="http://localhost:8000/beers/{{item.id}}/edit">
+                <input type="submit" name="Edit" id="#" value="Edit">
+            </a>
+            <a href="http://localhost:8000/beers/{{item.id}}/edit">
+                <input type="submit" name="Delete" id="#" value="Delete">
+            </a>
         </div>
     </form>
 

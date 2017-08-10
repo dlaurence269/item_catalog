@@ -3,32 +3,32 @@
 {% extends "main.html" %}
 {% block content %}
 
-    <h1>Edit "item_name"</h1>
+    <h1>Edit {{item.name}}</h1>
     <!-- The placeholders will be prepopulated values -->
     <form action="#" method = "#">
         <p>Name
             </br>
-            <input type="text" name="Name" id="#" value="Full Beer Name">
+            <input type="text" name="Name" id="#" value="{{item.name}}">
         </p>
         <p>Description
             </br>
-            <textarea></textarea>
+            <textarea>{{item.description}}</textarea>
         </p>
         <p>Picture Path
             </br>
-            <input type="text" name="Picture Path" id="#" value="image_file_name.jpg">
+            <input type="text" name="Picture Path" id="#" value="{{item.picture_path}}">
         </p>
         <p>Price
             </br>
-            $<input type="text" name="Price" id="#" value="5.99">
+            <input type="text" name="Price" id="#" value="{{item.price}}">
         </p>
         <p>IBU
             </br>
-            <input type="number" name="IBU" min="0" max="100" value="30" required="">
+            <input type="number" name="IBU" min="0" max="100" value="{{item.ibu}}" required="">
         </p>
         <p>ABV
             </br>
-            <input type="number" name="ABV" min="0" max="100" value="5" required="">
+            <input type="number" name="ABV" min="0" max="100" value="{{item.abv}}" required="">
         </p>
         <p>Category
             </br>

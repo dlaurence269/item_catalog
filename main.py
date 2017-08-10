@@ -52,7 +52,8 @@ def newBeer():
 # Add methods=['GET', 'POST']
 @app.route('/beers/<int:item_id>/edit') # GET - View to edit a specific item # POST - Update a specific item
 def editBeer(item_id):
-    return render_template('editBeer.html')
+    item = session.query(Item).filter_by(id=item_id).one()
+    return render_template('editBeer.html', item=item)
 
 # 5. Delete
 # Add methods=['GET', 'POST']
