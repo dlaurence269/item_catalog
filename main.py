@@ -22,23 +22,25 @@ session = DBSession()
 @app.route('/') # GET - Landing page, directs routes to /beer
 @app.route('/beers') # GET - List of all beer
 def showAllBeers():
+    # Returns all Categories
     categories = session.query(Category).order_by(asc(Category.name))
     
     query = session.query(Item)
     category_id_filter = request.args.get('category_id')
+    # If a Category is selected, return the beers within that category
     if category_id_filter is not None:
         query = query.filter(Item.category_id == int(category_id_filter))
-    
+    # Return results, if there is no category, all beers will show.
     print (query)
     items = query.all()
-        # do something with the beers list
-
+    # do something with the beers list
     return render_template('showAllBeers.html', categories=categories, items=items, Item=Item)
 
 # 2. Show specific beer 
 @app.route('/beers/<int:item_id>') # GET - See a specific item in detail
 def showSpecificBeer(item_id):
-    return render_template('showSpecificBeer.html')
+    item = session.query(Item).filter_by(id=item_id).one()
+    return render_template('showSpecificBeer.html', item=item)
 
 # 3. New
 # Add methods=['GET', 'POST']
