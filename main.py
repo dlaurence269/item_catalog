@@ -22,7 +22,8 @@ session = DBSession()
 @app.route('/') # GET - Landing page, directs routes to /beer
 @app.route('/beers') # GET - List of all beer
 def showAllBeers():
-    return render_template('showAllBeers.html')
+    categories = session.query(Category).order_by(asc(Category.name))
+    return render_template('showAllBeers.html', categories=categories)
 
 # 2. Show specific beer 
 @app.route('/beers/<int:item_id>') # GET - See a specific item in detail

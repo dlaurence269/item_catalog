@@ -3,24 +3,24 @@
 {% extends "main.html" %}
 {% block content %}
 
-    <h1>Laurence Brewing Co.</h1>
+    <h1>Laurence Brewing and Distributing CO.</h1>
     <div class=" col-md-12 header">
         <div class="col-md-6 image">
             <img src="../static/images/ibu_vs_abv.jpeg" alt="Sorry, image failed to load:(">
         </div>
-        <!-- This whole div needs templating so that the 
-        appropriate 'category', is dynamically generated. -->
+        <!-- Templates dynamically generating the appropriate 'category'. -->
         <div class=" col-md-5 beer_categories">
         <h2>Beer Styles</h2>
-            <div class="col-md-12 beer_1">
-                <h3><a href="">IPA</a></h3>
+        {% for category in categories %}
+        <!-- Insert url_for in an a href tag here-->
+            <div class="col-md-12">
+                <h3><a href="">{{category.name}}</a></h3>
             </div>
-            <div class="col-md-12 beer_1">
-                <h3><a href="">Lager</a></h3>
-            </div>
+        <!-- -->
+        {% endfor %}
         </div>
     </div>
-
+        
     <!-- This whole div needs templating so that the appropriate 'picture', 
     'beer name', and 'beer' description are dynamically generated. -->
     <div class="col-md-12 list_of_beers">
@@ -47,4 +47,23 @@
         </div>
     </div>
 
+  
+
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
