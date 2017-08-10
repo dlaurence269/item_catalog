@@ -3,6 +3,7 @@
 {% extends "main.html" %}
 {% block content %}
 
+
     <h1>Laurence Brewing and Distributing CO.</h1>
     <div class=" col-md-12 header">
         <div class="col-md-6 image">
@@ -22,9 +23,9 @@
     </div>
     </br>
         
-    <!-- This whole div needs templating so that the appropriate 'picture', 
-    'beer name', and 'beer' description are dynamically generated. -->
+    <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
     {% for item in items %}
+    <a href="http://localhost:8000/beers/{{item.id}}">
     <div class="col-md-12 list_of_beers">
         <div class="col-md-3">
             <img src="{{item.picture_path}}" alt="Sorry, image failed to load:(">
@@ -36,24 +37,8 @@
             <p>{{item.description}}</p>
         </div>
     </div>
+    </a>
     {% endfor %}
   
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

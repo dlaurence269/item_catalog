@@ -16,6 +16,10 @@ h1, h2 {
     text-align: center;
 }
 
-a:hover {
+.beer_categories a:hover {
+    color: #554535;
+}
+
+.list_of_beers a:link {
     color: #554535;
 }

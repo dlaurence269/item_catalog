@@ -33,7 +33,7 @@ def showAllBeers():
     items = query.all()
         # do something with the beers list
 
-    return render_template('showAllBeers.html', categories=categories, items=items)
+    return render_template('showAllBeers.html', categories=categories, items=items, Item=Item)
 
 # 2. Show specific beer 
 @app.route('/beers/<int:item_id>') # GET - See a specific item in detail
