@@ -59,7 +59,8 @@ def editBeer(item_id):
 # Add methods=['GET', 'POST']
 @app.route('/beers/<int:item_id>/delete') # GET - View to delete a specific item (only if no popup) # POST - Delete a specific item
 def deleteBeer(item_id):
-    return render_template('deleteBeer.html')
+    item = session.query(Item).filter_by(id=item_id).one()
+    return render_template('deleteBeer.html', item=item)
 
 # 6. Login
 # Add methods=['GET', 'POST']
