@@ -16,8 +16,8 @@ h1, h2 {
     color: #766c50;
     background-color: #ede4c7;
     border: 5px solid #554535;
-    padding: 2px;
-    margin: 2px;
+    padding: 5px;
+    margin: 5px;
     text-align: center;
 }
 
@@ -27,6 +27,11 @@ h1, h2 {
 
 .list_of_beers a:link {
     color: #554535;
+}
+
+.all_image, .all_new_button {
+    padding: 5px;
+    margin: 5px;
 }
 
 

@@ -6,7 +6,7 @@
 
     <h1>Laurence Brewing and Distributing CO.</h1>
     <div class=" col-md-12 header">
-        <div class="col-md-6 image">
+        <div class="col-md-6 all_image">
             <a href="http://localhost:8000/beers"><img src="../static/images/ibu_vs_abv.jpeg" alt="Sorry, image failed to load:("></a>
         </div>
         <!-- Templates dynamically generating the appropriate 'category'. -->
@@ -22,6 +22,10 @@
         </div>
     </div>
     </br>
+
+    <div class="col-md-12 all_new_button">
+        <input type="submit" name="#" id="#" value=" Add a NEW Beer">
+    </div>
         
     <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
     {% for item in items %}
