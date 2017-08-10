@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Delete a Specific Beer</title>
-    </head>
-    <body>
-        <h1>Delete "item_name"</h1>
-        <p>Are you sure you want to delete "item_name"?</p>
-        <form action="#" method = "#">
-            <input type="submit" name="#" id="#" value="Delete">
-            <input type="submit" name="#" id="#" value="Cancel">
-        </form> 
-    </body>
-</html>
+<title>Delete a Specific Beer</title>
+
+{% extends "main.html" %}
+{% block content %}
+
+    <h1>Delete "item_name"</h1>
+    <p>Are you sure you want to delete "item_name"?</p>
+    <form action="#" method = "#">
+        <input type="submit" name="#" id="#" value="Delete">
+        <input type="submit" name="#" id="#" value="Cancel">
+    </form> 
+
+{% endblock %}

@@ -1,54 +1,53 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Create A New Beer</title>
-    </head>
-    <body>
-        <h1>Create New Item</h1>
-        <!-- The placeholders are a suggestion of possible values -->
-        <form action="#" method = "#">
-            <p>Name
-                </br>
-                <input type="text" name="Name" id="#" value="" placeholder="Full Beer Name">
-            </p>
-            <p>Description
-                </br>
-                <textarea></textarea>
-            </p>
-            <p>Picture Path
-                </br>
-                <input type="text" name="Picture Path" id="#" value="" placeholder="image_file_name.jpg">
-            </p>
-            <p>Price
-                </br>
-                $<input type="text" name="Price" id="#" value="" placeholder="5.99">
-            </p>
-            <p>IBU
-                </br>
-                <input type="number" name="IBU" min="0" max="100" value="" placeholder="30" required="">
-            </p>
-            <p>ABV
-                </br>
-                <input type="number" name="ABV" min="0" max="100" value="" placeholder="5" required="">
-            </p>
-            <p>Category
-                </br>
-                <input type="radio" name="IPA" id="70" value="#">IPA
-                </br>
-                <input type="radio" name="Lager" id="71" value="#">Lager
-                </br>
-                <input type="radio" name="Pale Ale" id="72" value="#">Pale Ale
-                </br>
-                <input type="radio" name="Porter" id="73" value="#">Porter
-                </br>
-                <input type="radio" name="Stout" id="74" value="#">Stout
-                </br>
-                <input type="radio" name="Triple" id="75" value="#">Triple
-                </br>
-                <input type="radio" name="Wheat" id="76" value="#">Wheat
-            </p>
-            <input type="submit" name="#" id="#" value="Save New">
-            <input type="submit" name="#" id="#" value="Cancel">
-        </form> 
-    </body>
-</html>
+<title>Create a New Beer</title>
+
+{% extends "main.html" %}
+{% block content %}
+
+    <h1>Create New Item</h1>
+    <!-- The placeholders are a suggestion of possible values -->
+    <form action="#" method = "#">
+        <p>Name
+            </br>
+            <input type="text" name="Name" id="#" value="" placeholder="Full Beer Name">
+        </p>
+        <p>Description
+            </br>
+            <textarea></textarea>
+        </p>
+        <p>Picture Path
+            </br>
+            <input type="text" name="Picture Path" id="#" value="" placeholder="image_file_name.jpg">
+        </p>
+        <p>Price
+            </br>
+            $<input type="text" name="Price" id="#" value="" placeholder="5.99">
+        </p>
+        <p>IBU
+            </br>
+            <input type="number" name="IBU" min="0" max="100" value="" placeholder="30" required="">
+        </p>
+        <p>ABV
+            </br>
+            <input type="number" name="ABV" min="0" max="100" value="" placeholder="5" required="">
+        </p>
+        <p>Category
+            </br>
+            <input type="radio" name="IPA" id="70" value="#">IPA
+            </br>
+            <input type="radio" name="Lager" id="71" value="#">Lager
+            </br>
+            <input type="radio" name="Pale Ale" id="72" value="#">Pale Ale
+            </br>
+            <input type="radio" name="Porter" id="73" value="#">Porter
+            </br>
+            <input type="radio" name="Stout" id="74" value="#">Stout
+            </br>
+            <input type="radio" name="Triple" id="75" value="#">Triple
+            </br>
+            <input type="radio" name="Wheat" id="76" value="#">Wheat
+        </p>
+        <input type="submit" name="#" id="#" value="Save New">
+        <input type="submit" name="#" id="#" value="Cancel">
+    </form> 
+
+{% endblock %}

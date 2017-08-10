@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Specific Beer Details</title>
-    </head>
-    <body>
-        <h1>This is a specific items' detailed page.</h1>
-        <form>
-            <textarea></textarea>
-            </br>
-            <input type="submit" name="#" id="#" value="Edit">
-            <input type="submit" name="#" id="#" value="Delete">
-        </form>
-    </body>
-</html>
+<title>Specific Beer Details</title>
+
+{% extends "main.html" %}
+{% block content %}
+
+    <h1>This is a specific items' detailed page.</h1>
+    <form>
+        <textarea></textarea>
+        </br>
+        <input type="submit" name="#" id="#" value="Edit">
+        <input type="submit" name="#" id="#" value="Delete">
+    </form>
+
+{% endblock %}
