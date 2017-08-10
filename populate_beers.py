@@ -63,7 +63,7 @@ session.commit()
 
 Item3 = Item(user_id=3, name="IPA IPA IPA",
                     description="Classic IPA. If you're trying for the first time, this is the most typical IPA around.",
-                    picture_path="../static/images/another_ipa.jpeg",
+                    picture_path="../static/images/another_ipa.png",
                     price="$3.00", ibu="50", abv="6", category=category1)
 
 session.add(Item3)
@@ -111,7 +111,7 @@ session.commit()
 
 Item3 = Item(user_id=3, name="Logger Lager",
                     description="For those hardworking, blue collar, strong folk. There's nothing better.",
-                    picture_path="../static/images/tall_wheat.jpg",
+                    picture_path="../static/images/tall_wheat.jpeg",
                     price="$1.00", ibu="12", abv="4.5", category=category2)
 
 session.add(Item3)
@@ -119,7 +119,7 @@ session.commit()
 
 Item4 = Item(user_id=3, name="Lady Lager",
                     description="Here's any easy way to show strangers that you are fine and elegant, on a budget!",
-                    picture_path="../static/images/med_lager.jpg",
+                    picture_path="../static/images/med_lager.jpeg",
                     price="$1.00", ibu="10", abv="4", category=category2)
 
 session.add(Item4)
@@ -127,7 +127,7 @@ session.commit()
 
 Item5 = Item(user_id=2, name="Basic Beer Here",
                     description="No suprise Lager. Cheap and easy to drink, like a lager should be.",
-                    picture_path="../static/images/classic_lager.jpeg",
+                    picture_path="../static/images/classic_lager.jpg",
                     price="$1.00", ibu="11", abv="5", category=category2)
 
 session.add(Item5)
@@ -135,7 +135,7 @@ session.commit()
 
 Item6 = Item(user_id=2, name="Robust Lust Lager",
                     description="This is an incredibly flavorfull and complex beer for a lager. Impress your friends or a hot date with this one of a kind beer.",
-                    picture_path="../static/images/another_lager.jpg",
+                    picture_path="../static/images/another_lager.jpeg",
                     price="$2.50", ibu="15", abv="6", category=category2)
 
 session.add(Item6)
@@ -174,7 +174,7 @@ session.commit()
 
 Item3 = Item(user_id=4, name="Pail of Pale",
                     description="This beer is for those pale ale lovers on a buget.",
-                    picture_path="../static/images/wheat.jpg",
+                    picture_path="../static/images/wheat.jpeg",
                     price="$1.00", ibu="30", abv="5", category=category3)
 
 session.add(Item3)
@@ -267,7 +267,7 @@ session.commit()
 
 Item2 = Item(user_id=4, name="Tripple and Fall",
                     description="Delicious triple that you will simply fall for from sip 1!",
-                    picture_path="../static/images/med_lager.jpg",
+                    picture_path="../static/images/med_lager.jpeg",
                     price="$4.00", ibu="40", abv="8", category=category6)
 
 session.add(Item2)
@@ -290,7 +290,7 @@ session.commit()
 
 Item1 = Item(user_id=2, name="Wheat Femmes",
                     description="Chilling, just like the famous French movie '8 femmes'.",
-                    picture_path="../static/images/another_lager.jpg",
+                    picture_path="../static/images/another_lager.jpeg",
                     price="$3.00", ibu="30", abv="5", category=category7)
 
 session.add(Item1)
@@ -299,7 +299,7 @@ session.commit()
 
 Item2 = Item(user_id=4, name="Classical Wheat",
                     description="Full of flavor, with a sweet banana after taste that can't be beat.",
-                    picture_path="../static/images/tall_wheat.jpg",
+                    picture_path="../static/images/tall_wheat.jpeg",
                     price="$2.00", ibu="20", abv="5", category=category7)
 
 session.add(Item2)
@@ -307,7 +307,7 @@ session.commit()
 
 Item3 = Item(user_id=3, name="Twick or Twheat!",
                     description="This stunning wheat will put you in a mischievous mood.",
-                    picture_path="../static/images/twisted_wheat.jpg",
+                    picture_path="../static/images/twisted_wheat.jpeg",
                     price="$4.00", ibu="25", abv="6", category=category7)
 
 session.add(Item3)
@@ -323,7 +323,7 @@ session.commit()
 
 Item5 = Item(user_id=4, name="Last Wheat Standing",
                     description="A beer that can't be beat, so don't try. Just buy, drink and enjoy.",
-                    picture_path="../static/images/medium_lager.jpg",
+                    picture_path="../static/images/medium_lager.jpeg",
                     price="$2.50", ibu="30", abv="6", category=category7)
 
 session.add(Item5)

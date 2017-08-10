@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, jsonify, url_for
+from flask import Flask, render_template, redirect, jsonify, url_for, request
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Category, Item
@@ -23,7 +23,17 @@ session = DBSession()
 @app.route('/beers') # GET - List of all beer
 def showAllBeers():
     categories = session.query(Category).order_by(asc(Category.name))
-    return render_template('showAllBeers.html', categories=categories)
+    
+    query = session.query(Item)
+    category_id_filter = request.args.get('category_id')
+    if category_id_filter is not None:
+        query = query.filter(Item.category_id == int(category_id_filter))
+    
+    print (query)
+    items = query.all()
+        # do something with the beers list
+
+    return render_template('showAllBeers.html', categories=categories, items=items)
 
 # 2. Show specific beer 
 @app.route('/beers/<int:item_id>') # GET - See a specific item in detail

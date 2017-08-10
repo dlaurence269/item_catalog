@@ -16,6 +16,6 @@ h1, h2 {
     text-align: center;
 }
 
-a {
-    color: #766c50;
+a:hover {
+    color: #554535;
 }
