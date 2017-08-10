@@ -6,10 +6,31 @@
 
     <h1>{{item.name}}</h1>
     <form>
-        <textarea></textarea>
+        
+            <div class="col-md-12 specific_image">
+                <img src="{{item.picture_path}}" alt="Beer Image">
+            </div>
+            <div class="col-md-12 specific_description">
+                <p>{{item.description}}</p>
+            </div>
+        
+        
         </br>
-        <input type="submit" name="#" id="#" value="Edit">
-        <input type="submit" name="#" id="#" value="Delete">
+        <div class="col-md-6 price_ibu_abv">
+            <div class="col-md-4 price">
+                <p>Price: {{item.price}}</p>
+            </div>
+            <div class="col-md-4 ibu">
+                <p>IBU: {{item.ibu}}</p>
+            </div>
+            <div class="col-md-4 abv">
+                <p>ABV: {{item.abv}}</p>
+            </div>
+        </div>
+        <div class="col-md-12 POST">
+            <input type="submit" name="#" id="#" value="Edit">
+            <input type="submit" name="#" id="#" value="Delete">
+        </div>
     </form>
 
 

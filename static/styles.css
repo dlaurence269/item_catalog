@@ -1,3 +1,5 @@
+/* All Pages */
+
 img {
     max-width: 100%;
     max-height: 100%;
@@ -6,6 +8,9 @@ img {
 h1, h2 {
     text-align: center;
 }
+
+
+/* Landing Page Specific */
 
 .beer_categories h3 {
     color: #766c50;
@@ -22,4 +27,19 @@ h1, h2 {
 
 .list_of_beers a:link {
     color: #554535;
+}
+
+
+/* Beer Specific Page Specific */
+
+.price_ibu_abv {
+    display: inline-flex;
+}
+
+.specific_image {
+    text-align: center;
+}
+
+.specific_description {
+    text-align: center;
 }
