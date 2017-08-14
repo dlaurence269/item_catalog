@@ -43,10 +43,18 @@ def showSpecificBeer(item_id):
     return render_template('showSpecificBeer.html', item=item)
 
 # 3. New
-# Add methods=['GET', 'POST']
-@app.route('/beers/new') # GET - View to create a new item # POST - Create a new item
+# GET - View to create a new item # POST - Create a new item
+@app.route('/beers/new', methods=['GET', 'POST'])
 def newBeer():
-    return render_template('newBeer.html')
+    if request.method == 'POST':
+        newItem = Item(name=request.form['name'], description=request.form['description'], 
+                        price=request.form['price'], ibu=request.form['ibu'], abv=request.form['abv'],
+                        category=request.form['category('')'])
+        session.add(newItem)
+        session.commit()
+        return redirect(url_for('showAllBeers'))
+    else:
+        return render_template('newBeer.html')
 
 # 4. Edit
 # Add methods=['GET', 'POST']

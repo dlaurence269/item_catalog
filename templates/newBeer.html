@@ -5,46 +5,53 @@
 
     <h1>Create a New Beer</h1>
     <!-- The placeholders are a suggestion of possible values -->
-    <form action="#" method = "#">
+    <form action="#" method = "post">
         <p>Name
             </br>
-            <input type="text" name="Name" id="#" value="" placeholder="Full Beer Name">
+            <input type="text" name="name" id="#" value="" placeholder="Full Beer Name">
         </p>
         <p>Description
             </br>
-            <textarea></textarea>
+            <textarea type="" name="description" id="" value="" placeholder=""></textarea>
         </p>
         <p>Picture Path
             </br>
-            <input type="text" name="Picture Path" id="#" value="" placeholder="image_file_name.jpg">
+            <!--
+            {% if value!="" %}
+                <input type="text" name="Picture Path" id="#" value="" placeholder="image_file_name.jpg">
+            {% else %}
+                <input type="text" name="Picture Path" id="#" value="stock.jpg" placeholder="image_file_name.jpg">
+            {% endif %}
+            -->
+            <input type="text" name="picture_path" id="#" value="" placeholder="image_file_name.jpg">
         </p>
         <p>Price
             </br>
-            <input type="text" name="Price" id="#" value="" placeholder="5.99">
+            <input type="text" name="price" id="#" value="" placeholder="$5.99">
         </p>
         <p>IBU
             </br>
-            <input type="number" name="IBU" min="0" max="100" value="" placeholder="30" required="">
+            <input type="number" name="ibu" min="0" max="100" value="" placeholder="30" required="">
         </p>
         <p>ABV
             </br>
-            <input type="number" name="ABV" min="0" max="100" value="" placeholder="5" required="">
+            <input type="number" name="abv" min="0" max="100" value="" placeholder="5" required="">
         </p>
         <p>Category
             </br>
-            <input type="radio" name="IPA" id="70" value="#">IPA
+            <input type="radio" name="category" id="ipa" value="">IPA
             </br>
-            <input type="radio" name="Lager" id="71" value="#">Lager
+            <input type="radio" name="category" id="lager" value="">Lager
             </br>
-            <input type="radio" name="Pale Ale" id="72" value="#">Pale Ale
+            <input type="radio" name="category" id="pale ale" value="">Pale Ale
             </br>
-            <input type="radio" name="Porter" id="73" value="#">Porter
+            <input type="radio" name="category" id="porter" value="">Porter
             </br>
-            <input type="radio" name="Stout" id="74" value="#">Stout
+            <input type="radio" name="category" id="stout" value="">Stout
             </br>
-            <input type="radio" name="Triple" id="75" value="#">Triple
+            <input type="radio" name="category" id="triple" value="">Triple
             </br>
-            <input type="radio" name="Wheat" id="76" value="#">Wheat
+            <input type="radio" name="category" id="wheat" value="">Wheat
         </p>
         <input type="submit" name="#" id="#" value="Save New">
         <a href="{{url_for('showAllBeers')}}">Cancel</a>
