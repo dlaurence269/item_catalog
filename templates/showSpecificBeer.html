@@ -3,18 +3,24 @@
 {% extends "main.html" %}
 {% block content %}
 
-
-    <h1>{{item.name}}</h1>
+    <!-- Header: Name and retrun to Home Page -->
+    <div class="col-md-12 specific_header">
+        <div class="col-md-2">
+            <a href="{{url_for('showAllBeers')}}">Back Home</a>
+        </div>
+        <h1>{{item.name}}</h1>
+    </div>
+    
     <form>
+        <!-- Image and Description -->
+        <div class="col-md-12 specific_image">
+            <img src="{{item.picture_path}}" alt="Image of a Beer">
+        </div>
+        <div class="col-md-12 specific_description">
+            <p>{{item.description}}</p>
+        </div>   
         
-            <div class="col-md-12 specific_image">
-                <img src="{{item.picture_path}}" alt="Beer Image">
-            </div>
-            <div class="col-md-12 specific_description">
-                <p>{{item.description}}</p>
-            </div>
-        
-        
+        <!-- Price, IBU, ABV -->
         </br>
         <div class="col-md-6 price_ibu_abv">
             <div class="col-md-4 price">
@@ -27,13 +33,11 @@
                 <p>ABV: {{item.abv}}</p>
             </div>
         </div>
-        <div class="col-md-12 POST">
-            <a href="http://localhost:8000/beers/{{item.id}}/edit">
-                <input type="submit" name="Edit" id="#" value="Edit">
-            </a>
-            <a href="http://localhost:8000/beers/{{item.id}}/edit">
-                <input type="submit" name="Delete" id="#" value="Delete">
-            </a>
+
+        <!-- Edit and Delete buttons. -->
+        <div class="col-md-12 specific_POST">
+            <a href="{{url_for('editBeer', item_id = item.id)}}">Edit</a>
+            <a href="{{url_for('deleteBeer', item_id = item.id)}}">Delete</a>
         </div>
     </form>
 

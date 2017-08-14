@@ -3,7 +3,7 @@
 {% extends "main.html" %}
 {% block content %}
 
-    <h1>Edit {{item.name}}</h1>
+    <h1>Edit "{{item.name}}"</h1>
     <!-- The placeholders will be prepopulated values -->
     <form action="#" method = "#">
         <p>Name
@@ -47,7 +47,7 @@
             <input type="radio" name="Wheat" id="76" value="#">Wheat
         </p>
         <input type="submit" name="#" id="#" value="Save Edit">
-        <input type="submit" name="#" id="#" value="Cancel">
+        <a href="{{url_for('showSpecificBeer', item_id = item.id)}}">Cancel</a>
     </form> 
 
 {% endblock %}

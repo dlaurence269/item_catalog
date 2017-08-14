@@ -3,11 +3,11 @@
 {% extends "main.html" %}
 {% block content %}
 
-    <h1>Delete {{item.name}}</h1>
-    <p>Are you sure you want to delete {{item.name}}?</p>
+    <h1>Delete "{{item.name}}"</h1>
+    <p>Are you sure you want to delete "{{item.name}}"?</p>
     <form action="#" method = "#">
         <input type="submit" name="#" id="#" value="Delete">
-        <input type="submit" name="#" id="#" value="Cancel">
+        <a href="{{url_for('showSpecificBeer', item_id = item.id)}}">Cancel</a>
     </form> 
 
 {% endblock %}
