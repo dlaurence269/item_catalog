@@ -16,14 +16,7 @@
         </p>
         <p>Picture Path
             </br>
-            <!--
-            {% if value!="" %}
-                <input type="text" name="Picture Path" id="#" value="" placeholder="image_file_name.jpg">
-            {% else %}
-                <input type="text" name="Picture Path" id="#" value="stock.jpg" placeholder="image_file_name.jpg">
-            {% endif %}
-            -->
-            <input type="text" name="picture_path" id="#" value="" placeholder="image_file_name.jpg">
+            <input type="" name="picture_path" id="#" value="../static/images/stock.jpg">
         </p>
         <p>Price
             </br>
@@ -38,21 +31,17 @@
             <input type="number" name="abv" min="0" max="100" value="" placeholder="5" required="">
         </p>
         <p>Category
-            </br>
-            <input type="radio" name="category" id="ipa" value="">IPA
-            </br>
-            <input type="radio" name="category" id="lager" value="">Lager
-            </br>
-            <input type="radio" name="category" id="pale ale" value="">Pale Ale
-            </br>
-            <input type="radio" name="category" id="porter" value="">Porter
-            </br>
-            <input type="radio" name="category" id="stout" value="">Stout
-            </br>
-            <input type="radio" name="category" id="triple" value="">Triple
-            </br>
-            <input type="radio" name="category" id="wheat" value="">Wheat
+            <select name="q">
+                <option value="ipa">IPA</option>
+                <option value="lager">Lager</option>
+                <option value="pale ale">Pale Ale</option>
+                <option value="porter">Porter</option>
+                <option value="stout">Stout</option>
+                <option value="triple">Triple</option>
+                <option value="wheat">Wheat</option>
+            </select>
         </p>
+
         <input type="submit" name="#" id="#" value="Save New">
         <a href="{{url_for('showAllBeers')}}">Cancel</a>
     </form> 

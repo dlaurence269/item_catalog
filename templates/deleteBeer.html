@@ -5,7 +5,7 @@
 
     <h1>Delete "{{item.name}}"</h1>
     <p>Are you sure you want to delete "{{item.name}}"?</p>
-    <form action="#" method = "#">
+    <form action="#" method = "post">
         <input type="submit" name="#" id="#" value="Delete">
         <a href="{{url_for('showSpecificBeer', item_id = item.id)}}">Cancel</a>
     </form> 

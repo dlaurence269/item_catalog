@@ -49,7 +49,7 @@ def newBeer():
     if request.method == 'POST':
         newItem = Item(name=request.form['name'], description=request.form['description'], 
                         price=request.form['price'], ibu=request.form['ibu'], abv=request.form['abv'],
-                        category=request.form['category('')'])
+                        category=request.form['category'])
         session.add(newItem)
         session.commit()
         return redirect(url_for('showAllBeers'))
@@ -60,8 +60,28 @@ def newBeer():
 # Add methods=['GET', 'POST']
 @app.route('/beers/<int:item_id>/edit') # GET - View to edit a specific item # POST - Update a specific item
 def editBeer(item_id):
+    editedItem = session.query(Item).filter_by(id=item_id).one()
     item = session.query(Item).filter_by(id=item_id).one()
-    return render_template('editBeer.html', item=item)
+    if request.method == 'POST':
+        if request.form['name']:
+            editedItem.name = request.form['name']
+        if request.form['description']:
+            editedItem.description = request.form['description']
+        if request.form['picture_path']:
+            editedItem.course = request.form['picture_path']
+        if request.form['price']:
+            editedItem.price = request.form['price']
+        if request.form['ibu']:
+            editedItem.ibu = request.form['ibu']
+        if request.form['abv']:
+            editedItem.abv = request.form['abv']
+        if request.form['category']:
+            editedItem.category = request.form['category']
+        session.add(editedItem)
+        session.commit()
+        return redirect(url_for('showAllBeers'))
+    else:
+        return render_template('editBeer.html', item=item)
 
 # 5. Delete
 # Add methods=['GET', 'POST']
@@ -69,6 +89,12 @@ def editBeer(item_id):
 def deleteBeer(item_id):
     item = session.query(Item).filter_by(id=item_id).one()
     return render_template('deleteBeer.html', item=item)
+    if request.method == 'POST':
+        session.delete(item)
+        session.commit()
+        return redirect(url_for('showAllBeers', item_id=item_id))
+    else:
+        return render_template('deleteBeer.html', item_id=item)
 
 # 6. Login
 # Add methods=['GET', 'POST']
