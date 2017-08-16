@@ -61,7 +61,7 @@ def newBeer():
 @app.route('/beers/<int:item_id>/edit') # GET - View to edit a specific item # POST - Update a specific item
 def editBeer(item_id):
     editedItem = session.query(Item).filter_by(id=item_id).one()
-    item = session.query(Item).filter_by(id=item_id).one()
+    # item = session.query(Item).filter_by(id=item_id).one()
     if request.method == 'POST':
         if request.form['name']:
             editedItem.name = request.form['name']
@@ -84,17 +84,16 @@ def editBeer(item_id):
         return render_template('editBeer.html', item=item)
 
 # 5. Delete
-# Add methods=['GET', 'POST']
-@app.route('/beers/<int:item_id>/delete') # GET - View to delete a specific item (only if no popup) # POST - Delete a specific item
+# GET - View to delete a specific item (only if no popup) # POST - Delete a specific item
+@app.route('/beers/<int:item_id>/delete', methods=['GET', 'POST'])
 def deleteBeer(item_id):
-    item = session.query(Item).filter_by(id=item_id).one()
-    return render_template('deleteBeer.html', item=item)
+    itemToDelete = session.query(Item).filter_by(id=item_id).one()
     if request.method == 'POST':
-        session.delete(item)
+        session.delete(itemToDelete)
         session.commit()
         return redirect(url_for('showAllBeers', item_id=item_id))
     else:
-        return render_template('deleteBeer.html', item_id=item)
+        return render_template('deleteBeer.html', item=itemToDelete)
 
 # 6. Login
 # Add methods=['GET', 'POST']
