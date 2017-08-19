@@ -8,30 +8,32 @@
     <form action="#" method = "post">
         <p>Name
             </br>
-            <input type="text" name="name" id="#" value="" placeholder="Full Beer Name">
+            <input type="text" name="name" value="" placeholder="Full Beer Name">
         </p>
         <p>Description
             </br>
-            <textarea type="" name="description" id="" value="" placeholder=""></textarea>
+            <textarea type="text" name="description" value=""></textarea>
         </p>
         <p>Picture Path
             </br>
-            <input type="" name="picture_path" id="#" value="../static/images/stock.jpg">
+            <input type="text" name="picture_path" value="../static/images/stock.jpg">
         </p>
         <p>Price
             </br>
-            <input type="text" name="price" id="#" value="" placeholder="$5.99">
+            <input type="text" name="price" value="" placeholder="$5.99">
         </p>
         <p>IBU
             </br>
-            <input type="number" name="ibu" min="0" max="100" value="" placeholder="30" required="">
+            <input type="number" step=".01" name="ibu" min="0" max="100" value="" placeholder="30" required="">
         </p>
         <p>ABV
             </br>
-            <input type="number" name="abv" min="0" max="100" value="" placeholder="5" required="">
+            <input type="number" step=".01" name="abv" min="0" max="100" value="" placeholder="5" required="">
         </p>
+        <!--
         <p>Category
-            <select name="q">
+            <select name="category" value="category" required="">
+                <option value=""></option>
                 <option value="ipa">IPA</option>
                 <option value="lager">Lager</option>
                 <option value="pale ale">Pale Ale</option>
@@ -41,7 +43,7 @@
                 <option value="wheat">Wheat</option>
             </select>
         </p>
-
+        -->
         <input type="submit" name="#" id="#" value="Save New">
         <a href="{{url_for('showAllBeers')}}">Cancel</a>
     </form> 

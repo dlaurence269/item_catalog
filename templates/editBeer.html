@@ -5,7 +5,7 @@
 
     <h1>Edit "{{item.name}}"</h1>
     <!-- The placeholders will be prepopulated values -->
-    <form action="#" method = "#">
+    <form action="#" method = "post">
         <p>Name
             </br>
             <input type="text" name="Name" id="#" value="{{item.name}}">
@@ -14,37 +14,35 @@
             </br>
             <textarea>{{item.description}}</textarea>
         </p>
+        <!--
         <p>Picture Path
             </br>
             <input type="text" name="Picture Path" id="#" value="{{item.picture_path}}">
         </p>
+        -->
         <p>Price
             </br>
             <input type="text" name="Price" id="#" value="{{item.price}}">
         </p>
         <p>IBU
             </br>
-            <input type="number" name="IBU" min="0" max="100" value="{{item.ibu}}" required="">
+            <input type="number" step=".01" name="IBU" min="0" max="100" value="{{item.ibu}}" required="">
         </p>
         <p>ABV
             </br>
-            <input type="number" name="ABV" min="0" max="100" value="{{item.abv}}" required="">
+            <input type="number" step=".01" name="ABV" min="0" max="100" value="{{item.abv}}" required="">
         </p>
         <p>Category
-            </br>
-            <input type="radio" name="IPA" id="70" value="#">IPA
-            </br>
-            <input type="radio" name="Lager" id="71" value="#">Lager
-            </br>
-            <input type="radio" name="Pale Ale" id="72" value="#">Pale Ale
-            </br>
-            <input type="radio" name="Porter" id="73" value="#">Porter
-            </br>
-            <input type="radio" name="Stout" id="74" value="#">Stout
-            </br>
-            <input type="radio" name="Triple" id="75" value="#">Triple
-            </br>
-            <input type="radio" name="Wheat" id="76" value="#">Wheat
+            <select name="category" value="category" required="">
+                <option value=""></option>
+                <option value="ipa">IPA</option>
+                <option value="lager">Lager</option>
+                <option value="pale ale">Pale Ale</option>
+                <option value="porter">Porter</option>
+                <option value="stout">Stout</option>
+                <option value="triple">Triple</option>
+                <option value="wheat">Wheat</option>
+            </select>
         </p>
         <input type="submit" name="edit" id="submit_edit" value="Save Edit">
         <a href="{{url_for('showSpecificBeer', item_id = item.id)}}">Cancel</a>
