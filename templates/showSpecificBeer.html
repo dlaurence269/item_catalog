@@ -19,18 +19,21 @@
         <div class="col-md-12 specific_description">
             <p>{{item.description}}</p>
         </div>   
-        
         <!-- Price, IBU, ABV -->
+        
         </br>
         <div class="col-md-6 price_ibu_abv">
-            <div class="col-md-4 price">
+            <div class="col-md-3 price">
                 <p>Price: {{item.price}}</p>
             </div>
-            <div class="col-md-4 ibu">
+            <div class="col-md-3 ibu">
                 <p>IBU: {{item.ibu}}</p>
             </div>
-            <div class="col-md-4 abv">
+            <div class="col-md-3 abv">
                 <p>ABV: {{item.abv}}</p>
+            </div>
+            <div class="col-md-3 category_id">
+                <p>Category: {{item.category.name}}</p>
             </div>
         </div>
 
