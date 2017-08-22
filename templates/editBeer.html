@@ -4,35 +4,36 @@
 {% block content %}
 
     <h1>Edit "{{item.name}}"</h1>
-    <!-- The placeholders will be prepopulated values -->
+    <!-- The placeholders are prepopulated values from the dtabase. -->
     <form action="#" method = "post">
         <p>Name
             </br>
-            <input type="text" name="Name" id="#" value="{{item.name}}">
+            <input type="text" name="name" id="#" value="{{item.name}}">
         </p>
         <p>Description
             </br>
-            <textarea>{{item.description}}</textarea>
+            <textarea name="description">{{item.description}}</textarea>
         </p>
-        <!--
         <p>Picture Path
             </br>
-            <input type="text" name="Picture Path" id="#" value="{{item.picture_path}}">
+            <input type="text" name="picture_path" id="#" value="{{item.picture_path}}">
         </p>
-        -->
         <p>Price
             </br>
-            <input type="text" name="Price" id="#" value="{{item.price}}">
+            <input type="text" name="price" id="#" value="{{item.price}}">
         </p>
         <p>IBU
             </br>
-            <input type="number" step=".01" name="IBU" min="0" max="100" value="{{item.ibu}}" required="">
+            <input type="number" step=".01" name="ibu" min="0" max="100" value="{{item.ibu}}" required="">
         </p>
         <p>ABV
             </br>
-            <input type="number" step=".01" name="ABV" min="0" max="100" value="{{item.abv}}" required="">
+            <input type="number" step=".01" name="abv" min="0" max="100" value="{{item.abv}}" required="">
         </p>
         <p>Category
+            <!-- Dynamically generates a list of all categories with
+            the current category already selected by default. -->
+            <!-- NEED TO FIX THE DOUBLE RESULT! -->
             <select name="category_id" value="{{item.category_id}}" required="">
                 {% for category in categories %} 
                     <option value="{{category.id}}">{{category.name}}</option>
@@ -42,7 +43,7 @@
                 {% endfor %}
             </select>
         </p>
-        <input type="submit" name="edit" id="submit_edit" value="Save Edit">
+        <input type="submit" name="edit" value="Save Edit">
         <a href="{{url_for('showSpecificBeer', item_id = item.id)}}">Cancel</a>
     </form> 
 
