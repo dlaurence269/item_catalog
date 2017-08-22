@@ -56,7 +56,7 @@ class Item(Base):
             'price': self.price,
             'ibu': self.ibu,
             'abv': self.abv,
-            'category': self.category.serialize()
+            'category': self.category.serialize
         }
 
 

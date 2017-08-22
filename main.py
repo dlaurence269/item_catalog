@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Category, Item
 from flask import session as login_session
+import json
 
 
 app = Flask(__name__)
@@ -14,6 +15,36 @@ Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+
+# OAuth
+
+# 1. Login
+# GET - VView to login or signup
+# POST - Login via third party API
+# Add methods=['GET', 'POST']
+@app.route('/login')
+def login():
+    return "This is the login page."
+
+
+# JSON APIs to view Beer Information
+
+# 1. JSON Specific Beer
+# GET - View JSON for a specific item
+@app.route('/beers/<int:item_id>/json')
+def showSpecificBeerJSON(item_id):
+    specificBeer = session.query(Item).filter_by(id=item_id).one()
+    return jsonify(specificBeer.serialize)
+    #return "This is the view a specific item in JSON page."
+
+# 2. JSON All Beers
+# GET - View JSON for all items (in alphabetical order)
+@app.route('/beers/json')
+def showAllBeersJSON():
+    allBeers = session.query(Item).all()
+    return jsonify([b.serialize for b in allBeers])
+    #return "This is the view all beers in JSON page."
 
 
 # App Routing
@@ -102,22 +133,6 @@ def deleteBeer(item_id):
         return redirect(url_for('showAllBeers', item_id=item_id))
     else:
         return render_template('deleteBeer.html', item=itemToDelete)
-
-# 6. Login
-# Add methods=['GET', 'POST']
-@app.route('/login') # GET - VView to login or signup # POST - Login via third party API
-def login():
-    return "This is the login page."
-
-# 7. JSON all
-@app.route('/beers/json') # GET - View JSON for all items (in alphabetical order)
-def showAllBeersJSON():
-    return "This is the view all beer in JSON page."
-
-# 8. JSON specific item
-@app.route('/beers/<int:item_id>/json') # GET - View JSON for a specific item
-def showSpecificBeerJSON(item_id):
-    return "This is the view JSON for a specific item page."
 
 
 if __name__ == '__main__':
