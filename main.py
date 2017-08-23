@@ -4,6 +4,11 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Category, Item
 from flask import session as login_session
 import json
+import random
+import string
+from oauth2client.client import flow_from_clientsecrets
+from oauth2client.client import FlowExchangeError
+import httplib2
 
 
 app = Flask(__name__)
@@ -17,16 +22,26 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
+# Create anti-forgery state token
+@app.route('/login')
+def showLogin():
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                    for x in range(32))
+    login_session['state'] = state
+    print ("The current session state is %s" % login_session['state'])
+    return render_template('login.html', STATE=state)
+
+
 # OAuth
 
 # 1. Login
 # GET - VView to login or signup
 # POST - Login via third party API
 # Add methods=['GET', 'POST']
-@app.route('/login')
+'''@app.route('/login')
 def login():
     return "This is the login page."
-
+'''
 
 # JSON APIs to view Beer Information
 
@@ -136,5 +151,6 @@ def deleteBeer(item_id):
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super_secret_key' # Added for OAuth steps.
     app.debug = True
     app.run(host='0.0.0.0', port=8000)

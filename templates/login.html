@@ -1,0 +1,14 @@
+<title>Login or Sign Up</title>
+
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    
+    <h1>Login to Beer Catalog</h1>
+    <p>Please select the provider below to login or sign up.</p>
+    <form action="#" method = "post">
+        <input type="submit" name="login_google" value="Login / Sign Up with Google">
+        <a href="{{url_for('showAllBeers')}}">Cancel</a>
+    </form> 
+
+{% endblock %}
