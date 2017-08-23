@@ -23,7 +23,8 @@ session = DBSession()
 
 
 
-# OAuth, login with Google
+# OAuth, 3rd party login
+
 
 # Create anti-forgery state token
 @app.route('/login')
@@ -35,6 +36,7 @@ def showLogin():
     return render_template('login.html', STATE=state)
 
 
+# {{{ Begin Google Plus Sign-In
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
     # Validate state token
@@ -178,6 +180,7 @@ def gdisconnect():
         response = make_response(json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
         return response
+# End Google Plus Sign-In }}}
 
 
 # JSON APIs to view Beer Information
