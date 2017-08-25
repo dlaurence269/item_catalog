@@ -1,12 +1,12 @@
 <div class="row top-menu">
     <div class="col-md-6">
         <a href="{{url_for('showAllBeers')}}">
-            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>Show All Beers
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Show All Beers
         </a>
     </div>
     <div class="col-md-6 text-right">
-        <!--{%if 'username' not in session %}{% endif %}-->
-        {% if 2 > 1 %}
+        <!-- Google Sign-In Button
+        {% if True %}
             <div id="signInButton">
               <span class="g-signin"
                 data-scope="openid email"
@@ -19,7 +19,13 @@
               </span>
             </div>
         {% else %}
-            <a href="{{url_for('disconnect')}}">Logout</a>
-        {% endif %}          
+            <a href="{{url_for('showAllBeers')}}">Logout</a>
+        {% endif %}  
+        -->
+        {% if True %}
+            <a href="{{url_for('showAllBeers')}}">Login</a>
+        {% else %}
+            <a href="{{url_for('showAllBeers')}}">Logout</a>
+        {% endif %}         
     </div>
 </div>
