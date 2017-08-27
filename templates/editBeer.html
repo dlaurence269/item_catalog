@@ -13,7 +13,8 @@
         </p>
         <p>Description
             </br>
-            <textarea name="description">{{item.description}}</textarea>
+            <!-- The style is added in line here becasue there is a conflict with all other p tags' style. -->
+            <textarea name="description" style="color: #554535;">{{item.description}}</textarea>
         </p>
         <p>Picture Path
             </br>
@@ -31,11 +32,11 @@
             </br>
             <input type="number" step=".01" name="abv" min="0" max="100" value="{{item.abv}}" required="">
         </p>
-        <p>Category
+        <p>Category<!-- NEED TO FIX THE DOUBLE RESULT! -->
             <!-- Dynamically generates a list of all categories with
             the current category already selected by default. -->
-            <!-- NEED TO FIX THE DOUBLE RESULT! -->
-            <select name="category_id" value="{{item.category_id}}" required="">
+            <!-- The style is added in line here becasue there is a conflict with all other p tags' style. -->
+            <select name="category_id" value="{{item.category_id}}" required="" style="color: #554535;">
                 {% for category in categories %} 
                     <option value="{{category.id}}">{{category.name}}</option>
                     {% if category.id == item.category_id %}

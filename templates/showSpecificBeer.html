@@ -4,13 +4,8 @@
 {% block content %}
 {% include "header.html" %}
 
-    <!-- Header: Name and retrun to Home Page -->
-    <div class="col-md-12 specific_header">
-        <div class="col-md-2">
-            <a href="{{url_for('showAllBeers')}}">Back Home</a>
-        </div>
-        <h1>{{item.name}}</h1>
-    </div>
+    <!-- Header -->
+    <h1>{{item.name}}</h1>
     
     <form>
         <!-- Image and Description -->
