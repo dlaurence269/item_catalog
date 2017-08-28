@@ -1,30 +1,30 @@
 /* All Pages */
 
+
+
 body {
-    background-image: url("../static/images/groucho_beer_2.jpg");
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url(../static/images/groucho_beer_2.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-h1, h2, p, a {
-    color: #ede4c7;
-    text-shadow:
-    -1.2px -1.2px 0 #554535,
-    1.2px -1.2px 0 #554535,
-    -1.2px 1.2px 0 #554535,
-    1.2px 1.2px 0 #554535; 
-}
-
 h1, h2 {
     text-align: center;
+    color: #ede4c7;
+    text-shadow:
+    -1.15px -1.15px 0 #554535,
+    1.15px -1.15px 0 #554535,
+    -1.15px 1.15px 0 #554535,
+    1.15px 1.15px 0 #554535; 
 }
 
-img {
-    max-width: 100%;
-    max-height: 100%;
-    padding: 5px;
-    margin: 5px;
-    border: 5px solid #ede4c7;
+ p, a {
+    color: #ede4c7;
+    text-shadow:
+    -1px -1px 0 #554535,
+    1px -1px 0 #554535,
+    -1px 1px 0 #554535,
+    1px 1px 0 #554535; 
 }
 
 p {
@@ -35,6 +35,14 @@ a:hover {
     color: #ac5d01;
 }
 
+img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 5px;
+    margin: 5px;
+    border: 5px solid #ede4c7;
+}
+
 
 /* Forms Input */
 
@@ -43,6 +51,11 @@ input {
 }
 
 a.btn {
+    color: #554535;
+    text-shadow: none;
+}
+
+p.btn {
     color: #554535;
     text-shadow: none;
 }
@@ -73,6 +86,14 @@ a.btn {
 
 .list_of_beers img:hover {
     opacity: 0.5;
+}
+
+.truncate {
+    max-height: 80px;
+    max-width: 250ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 

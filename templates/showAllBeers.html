@@ -14,7 +14,7 @@
         <h2>Beer Styles</h2>
         {% for category in categories %}
             <div class="col-md-12">
-                <a href="/beers?category_id={{category.id}}"><h3>{{category.name}}</h3></a>
+                <a href="/beers?category_id={{category.id}}" class="btn btn-default"><h3>{{category.name}}</h3></a>
             </div>
         {% endfor %}
         </div>
@@ -33,11 +33,12 @@
         <div class="col-md-3">
             <img src="{{item.picture_path}}" alt="Image of a Beer.">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-8">
             <h3>{{item.name}}</h3>
             </br>
             <!-- Find a way to dynamically cut this off at 100 characters -->
-            <p>{{item.description}}</p>
+            <p class="truncate">{{item.description}}</p>
+            <p class="btn btn-default">Click for Details</p>
         </div>
     </div>
     </a>
