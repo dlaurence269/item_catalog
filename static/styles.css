@@ -9,10 +9,10 @@ body {
 h1, h2, p, a {
     color: #ede4c7;
     text-shadow:
-    -1px -1px 0 #554535,
-    1px -1px 0 #554535,
-    -1px 1px 0 #554535,
-    1px 1px 0 #554535; 
+    -1.2px -1.2px 0 #554535,
+    1.2px -1.2px 0 #554535,
+    -1.2px 1.2px 0 #554535,
+    1.2px 1.2px 0 #554535; 
 }
 
 h1, h2 {
@@ -24,6 +24,15 @@ img {
     max-height: 100%;
     padding: 5px;
     margin: 5px;
+    border: 5px solid #ede4c7;
+}
+
+p {
+    font-size: 1.15em;
+}
+
+a:hover { 
+    color: #ac5d01;
 }
 
 
@@ -32,6 +41,7 @@ img {
 input {
     color: #554535;
 }
+
 
 /* Landing Page Specific */
 
@@ -44,8 +54,8 @@ input {
     text-align: center;
 }
 
-.beer_categories a:hover {
-    color: #554535;
+.beer_categories h3:hover {
+    color: #ac5d01;
 }
 
 .list_of_beers a:link {
@@ -55,6 +65,10 @@ input {
 .all_image, .create_new_beer {
     padding: 5px;
     margin: 5px;
+}
+
+.list_of_beers img:hover {
+    opacity: 0.5;
 }
 
 
@@ -67,4 +81,3 @@ input {
 .specific_image, .specific_description {
     text-align: center;
 }
-

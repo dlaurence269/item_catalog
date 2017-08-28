@@ -8,7 +8,7 @@
     <h1>Laurence Brewing and Distributing CO.</h1>
     <div class=" col-md-12 header">
         <div class="col-md-6 all_image">
-            <a href="{{url_for('showAllBeers')}}"><img src="../static/images/ibu_vs_abv.jpeg" alt="Image of a graph of IBU (bitterness) vs. ABV (alcohol content)."></a>
+            <img src="../static/images/ibu_vs_abv.jpeg" alt="Image of a graph of IBU (bitterness) vs. ABV (alcohol content).">
         </div>
         <!-- Templates dynamically generating the appropriate 'category'. -->
         <div class=" col-md-5 beer_categories">
@@ -34,7 +34,7 @@
         <div class="col-md-3">
             <img src="{{item.picture_path}}" alt="Image of a Beer.">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-3">
             <h3>{{item.name}}</h3>
             </br>
             <!-- Find a way to dynamically cut this off at 100 characters -->
