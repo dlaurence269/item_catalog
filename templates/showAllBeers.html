@@ -27,9 +27,17 @@
         <a href="{{url_for('newBeer')}}" class="btn btn-default">+ Add a Beer</a>
     </div>
 
+    <!-- Current Style -->
+    <div class="col-md-12 current_style">
+        {% if category_name %}
+            <h1>Current Style: {{category_name}}</h1>
+        {% else %}
+            <h1>Showing All Beers</h1>
+        {% endif %}
+    </div>
+    
     <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
     {% for item in items %}
-    
     <div class="col-md-12 list_of_beers">
         <div class="col-md-3">
             <img src="{{item.picture_path}}" alt="Image of a Beer.">

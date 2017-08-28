@@ -89,6 +89,12 @@ p.btn {
     margin: 20px; 
 }
 
+.current_style {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
 .truncate {
     max-height: 80px;
     max-width: 250ch;

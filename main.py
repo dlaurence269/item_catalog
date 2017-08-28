@@ -33,13 +33,16 @@ def showAllBeers():
     query = session.query(Item)
     category_id_filter = request.args.get('category_id')
     # If a Category is selected, return the beers within that category
+    category_name = None
     if category_id_filter is not None:
         query = query.filter(Item.category_id == int(category_id_filter))
+        category_name = session.query(Category).filter(Category.id == int(category_id_filter)).one().name
     # Return results, if there is no category, all beers will show.
     print (query)
     items = query.all()
     # do something with the beers list
-    return render_template('showAllBeers.html', categories=categories, items=items, Item=Item)
+    return render_template('showAllBeers.html', categories=categories, items=items,
+                            Item=Item, category_name=category_name)
 
 # 2. Show specific beer
 # GET - See a specific item in detail
