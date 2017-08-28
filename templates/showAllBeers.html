@@ -4,7 +4,6 @@
 {% block content %}
 {% include "header.html" %}
 
-
     <h1>Laurence Brewing and Distributing CO.</h1>
     <div class=" col-md-12 header">
         <div class="col-md-6 all_image">
@@ -22,9 +21,9 @@
     </div>
     </br>
 
-    <!-- -->
+    <!-- Create New Beer -->
     <div class="col-md-12 create_new_beer">
-        <a href="{{url_for('newBeer')}}"><input type="submit" name="#" id="#" value="Create a NEW Beer"></a>
+        <a href="{{url_for('newBeer')}}"><input type="submit" value="Create a NEW Beer"></a>
     </div>
 
     <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
