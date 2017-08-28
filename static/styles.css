@@ -42,6 +42,10 @@ input {
     color: #554535;
 }
 
+a.btn {
+    color: #554535;
+    text-shadow: none;
+}
 
 /* Landing Page Specific */
 
