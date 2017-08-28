@@ -34,8 +34,8 @@
 
     <!-- Edit and Delete buttons. -->
     <div class="col-md-12 specific_POST">
-        <a href="{{url_for('editBeer', item_id = item.id)}}"><input type='submit' value='Edit'></a>
-        <a href="{{url_for('deleteBeer', item_id = item.id)}}"><input type='submit' value='Delete'></a>
+        <a href="{{url_for('editBeer', item_id = item.id)}}" class="btn btn-default">Edit</a>
+        <a href="{{url_for('deleteBeer', item_id = item.id)}}" class="btn btn-default">Delete</a>
     </div>
 
 
