@@ -12,7 +12,7 @@
         <!-- Templates dynamically generating the appropriate 'category'. -->
         <div class=" col-md-5 beer_categories">
         <h2>Beer Styles</h2>
-        <h4>(Select a category to see beers in that category only.)</h4>
+        <p>(Select a style to see beers of that style only.)</p>
         {% for category in categories %}
             <div class="col-md-12 btn-group btn-group-justified">
                 <a href="/beers?category_id={{category.id}}" class="btn btn-default"><h3>{{category.name}}</h3></a>

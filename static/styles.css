@@ -1,14 +1,12 @@
 /* All Pages */
 
-
-
 body {
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url(../static/images/groucho_beer_2.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-h1, h2, h4 {
+h1, h2 {
     text-align: center;
     color: #ede4c7;
     text-shadow:
@@ -56,6 +54,7 @@ p.btn {
     text-shadow: none;
 }
 
+
 /* Landing Page Specific */
 
 /*
@@ -72,6 +71,21 @@ p.btn {
 .beer_categories h3 {
     color: #554535;
     text-shadow: none;
+}
+
+.beer_categories p {
+    text-align: center;
+    color: #ede4c7;
+    text-shadow:
+    -1.15px -1.15px 0 #554535,
+    1.15px -1.15px 0 #554535,
+    -1.15px 1.15px 0 #554535,
+    1.15px 1.15px 0 #554535;
+}
+
+.btn-group-justified{
+    padding: 1px;
+    margin: 1px;
 }
 
 .all_image, .create_new_beer {
