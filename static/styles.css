@@ -8,7 +8,7 @@ body {
     background-attachment: fixed;
 }
 
-h1, h2 {
+h1, h2, h4 {
     text-align: center;
     color: #ede4c7;
     text-shadow:
@@ -18,7 +18,7 @@ h1, h2 {
     1.15px 1.15px 0 #554535; 
 }
 
- p, a {
+ h3, p, a {
     color: #ede4c7;
     text-shadow:
     -1px -1px 0 #554535,
@@ -29,10 +29,6 @@ h1, h2 {
 
 p {
     font-size: 1.15em;
-}
-
-a:hover { 
-    color: #ac5d01;
 }
 
 img {
@@ -62,6 +58,7 @@ p.btn {
 
 /* Landing Page Specific */
 
+/*
 .beer_categories h3 {
     color: #ede4c7;
     background-color: #554535;
@@ -70,22 +67,16 @@ p.btn {
     margin: 5px;
     text-align: center;
 }
+*/
 
-.beer_categories h3:hover {
-    color: #ac5d01;
-}
-
-.list_of_beers a:link {
+.beer_categories h3 {
     color: #554535;
+    text-shadow: none;
 }
 
 .all_image, .create_new_beer {
     padding: 5px;
     margin: 5px;
-}
-
-.list_of_beers img:hover {
-    opacity: 0.5;
 }
 
 .truncate {

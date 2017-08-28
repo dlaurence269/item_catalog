@@ -12,8 +12,9 @@
         <!-- Templates dynamically generating the appropriate 'category'. -->
         <div class=" col-md-5 beer_categories">
         <h2>Beer Styles</h2>
+        <h4>(Select a category to see beers in that category only.)</h4>
         {% for category in categories %}
-            <div class="col-md-12">
+            <div class="col-md-12 btn-group btn-group-justified">
                 <a href="/beers?category_id={{category.id}}" class="btn btn-default"><h3>{{category.name}}</h3></a>
             </div>
         {% endfor %}
@@ -28,7 +29,7 @@
 
     <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
     {% for item in items %}
-    <a href="{{url_for('showSpecificBeer', item_id = item.id)}}">
+    
     <div class="col-md-12 list_of_beers">
         <div class="col-md-3">
             <img src="{{item.picture_path}}" alt="Image of a Beer.">
@@ -38,10 +39,9 @@
             </br>
             <!-- Find a way to dynamically cut this off at 100 characters -->
             <p class="truncate">{{item.description}}</p>
-            <p class="btn btn-default">Click for Details</p>
+            <a href="{{url_for('showSpecificBeer', item_id = item.id)}}"><p class="btn btn-default">Click for Details</p></a>
         </div>
     </div>
-    </a>
     {% endfor %}
   
 
