@@ -14,13 +14,12 @@
         <!-- Templates dynamically generating the appropriate 'category'. -->
         <div class=" col-md-5 beer_categories">
         <h2>Beer Styles</h2>
-        <p>Help: (Select a style to see beers of that style only.)</p>
         <!-- Dynamically shows current style (category) selected -->
         <div class="col-md-12 current_style">
             {% if category_name %}
-                <p>Status: ({{category_name}} Selected, scroll down to see {{category_name}} beers.</p>
+                <p>STATUS: ({{category_name}} Selected, scroll down to see {{category_name}} beers.)</p>
             {% else %}
-                <p>Status: (No Style Selected, scroll down to see all beers.)</p>
+                <p>HELP: (No Style Selected, scroll down to see all beers. Select a style to see beers of that style only.)</p>
             {% endif %}
         </div>
         {% for category in categories %}
