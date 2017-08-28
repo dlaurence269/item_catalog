@@ -5,6 +5,8 @@
 {% include "header.html" %}
 
     <h1>Laurence Brewing and Distributing CO.</h1>
+    </br>
+    </br>
     <div class=" col-md-12 header">
         <div class="col-md-6 all_image">
             <img src="../static/images/ibu_vs_abv.jpeg" alt="Image of a graph of IBU (bitterness) vs. ABV (alcohol content).">
@@ -12,7 +14,15 @@
         <!-- Templates dynamically generating the appropriate 'category'. -->
         <div class=" col-md-5 beer_categories">
         <h2>Beer Styles</h2>
-        <p>(Select a style to see beers of that style only.)</p>
+        <p>Help: (Select a style to see beers of that style only.)</p>
+        <!-- Dynamically shows current style (category) selected -->
+        <div class="col-md-12 current_style">
+            {% if category_name %}
+                <p>Status: ({{category_name}} Selected, scroll down to see {{category_name}} beers.</p>
+            {% else %}
+                <p>Status: (No Style Selected, scroll down to see all beers.)</p>
+            {% endif %}
+        </div>
         {% for category in categories %}
             <div class="col-md-12 btn-group btn-group-justified">
                 <a href="/beers?category_id={{category.id}}" class="btn btn-default">{{category.name}}</a>
@@ -25,15 +35,6 @@
     <!-- Create New Beer -->
     <div class="col-md-12 create_new_beer">
         <a href="{{url_for('newBeer')}}" class="btn btn-default">+ Add a Beer</a>
-    </div>
-
-    <!-- Current Style -->
-    <div class="col-md-12 current_style">
-        {% if category_name %}
-            <h1>Current Style: {{category_name}}</h1>
-        {% else %}
-            <h1>Showing All Beers</h1>
-        {% endif %}
     </div>
     
     <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
