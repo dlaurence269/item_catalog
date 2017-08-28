@@ -15,7 +15,7 @@
         <p>(Select a style to see beers of that style only.)</p>
         {% for category in categories %}
             <div class="col-md-12 btn-group btn-group-justified">
-                <a href="/beers?category_id={{category.id}}" class="btn btn-default"><h3>{{category.name}}</h3></a>
+                <a href="/beers?category_id={{category.id}}" class="btn btn-default">{{category.name}}</a>
             </div>
         {% endfor %}
         </div>
@@ -24,7 +24,7 @@
 
     <!-- Create New Beer -->
     <div class="col-md-12 create_new_beer">
-        <a href="{{url_for('newBeer')}}" class="btn btn-default">Create a NEW Beer</a>
+        <a href="{{url_for('newBeer')}}" class="btn btn-default">+ Add a Beer</a>
     </div>
 
     <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
@@ -37,7 +37,6 @@
         <div class="col-md-8">
             <h3>{{item.name}}</h3>
             </br>
-            <!-- Find a way to dynamically cut this off at 100 characters -->
             <p class="truncate">{{item.description}}</p>
             <a href="{{url_for('showSpecificBeer', item_id = item.id)}}"><p class="btn btn-default">Click for Details</p></a>
         </div>
