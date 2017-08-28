@@ -17,9 +17,9 @@
         <!-- Dynamically shows current style (category) selected -->
         <div class="col-md-12 current_style">
             {% if category_name %}
-                <p>STATUS: ({{category_name}} Selected, scroll down to see {{category_name}} beers.)</p>
+                <h4>{{category_name}} Selected, scroll down to see {{category_name}} beers.</h4>
             {% else %}
-                <p>HELP: (No Style Selected, scroll down to see all beers. Select a style to see beers of that style only.)</p>
+                <h4>No style selected, scroll down to see all beers. Select a beer style to see beers of that style only.</h4>
             {% endif %}
         </div>
         {% for category in categories %}
@@ -30,12 +30,20 @@
         </div>
     </div>
     </br>
+    
+    <div class="col-md-12 current_style">
+        {% if category_name %}
+            <h2>{{category_name}} Beers</h2>
+        {% else %}
+            <h2>All Beers</h2>
+        {% endif %}
+    </div>
 
     <!-- Create New Beer -->
     <div class="col-md-12 create_new_beer">
         <a href="{{url_for('newBeer')}}" class="btn btn-default">+ Add a Beer</a>
     </div>
-    
+
     <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
     {% for item in items %}
     <div class="col-md-12 list_of_beers">
