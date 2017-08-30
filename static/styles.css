@@ -101,6 +101,11 @@ p.btn {
     text-overflow: ellipsis;
 }
 
+.flashes {
+    color: #ede4c7;
+    font-size: 2em;
+}
+
 
 /* Beer Specific Page Specific */
 

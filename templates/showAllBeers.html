@@ -7,6 +7,17 @@
     <h1>Laurence Brewing and Distributing CO.</h1>
     </br>
     </br>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
     <div class=" col-md-12 header">
         <div class="col-md-6 all_image">
             <img src="../static/images/ibu_vs_abv.jpeg" alt="Image of a graph of IBU (bitterness) vs. ABV (alcohol content).">
@@ -17,7 +28,7 @@
         <!-- Dynamically shows current style (category) selected -->
         <div class="col-md-12 current_style">
             {% if category_name %}
-                <h4>{{category_name}} Selected, scroll down to see {{category_name}} beers.</h4>
+                <h4>{{category_name}} selected, scroll down to see {{category_name}} beers.</h4>
             {% else %}
                 <h4>No style selected, scroll down to see all beers. Select a beer style to see beers of that style only.</h4>
             {% endif %}

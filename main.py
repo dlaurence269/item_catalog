@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, jsonify, url_for, request
+from flask import Flask, render_template, redirect, jsonify, url_for, request, flash
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Category, Item
@@ -64,6 +64,7 @@ def newBeer():
                         category_id=request.form['category_id'])
         session.add(newItem)
         session.commit()
+        flash('New Beer Successfully Created!')#flash('New Beer %s Successfully Created' % newItem.name)
         return redirect(url_for('showAllBeers'))
     else:
         return render_template('newBeer.html', categories=categories)
@@ -92,6 +93,7 @@ def editBeer(item_id):
             editedItem.category_id = request.form['category_id']
         session.add(editedItem)
         session.commit()
+        flash('Beer Successfully Edited!')#flash('Beer Successfully Edited %s' % editedItem.name)
         return redirect(url_for('showAllBeers'))
     else:
         print (editedItem.category_id)
@@ -106,6 +108,7 @@ def deleteBeer(item_id):
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()
+        flash('Beer Successfully Deleted!')#flash('%s Successfully Deleted' % itemToDelete.name)
         return redirect(url_for('showAllBeers', item_id=item_id))
     else:
         return render_template('deleteBeer.html', item=itemToDelete)
@@ -132,9 +135,6 @@ def showAllBeersJSON():
     #return "This is the view all beers in JSON page."
 
 
-
-#/**********************
-
 ########################
 # OAuth, 3rd party login
 ########################
@@ -154,10 +154,6 @@ def showLogin():
 ###
 # Begin Google Plus Sign-In
 ###
-
-
-#**********************/
-
 
 
 if __name__ == '__main__':

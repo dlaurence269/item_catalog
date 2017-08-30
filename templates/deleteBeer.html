@@ -6,6 +6,15 @@
 
     <h1>Delete "{{item.name}}"</h1>
     <p>Are you sure you want to delete "{{item.name}}"?</p>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <form action="#" method = "post">
         <input type="submit" name="delete" value="Delete" class="btn btn-default">
         <a href="{{url_for('showSpecificBeer', item_id = item.id)}}" class="btn btn-default">Cancel</a> 

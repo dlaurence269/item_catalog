@@ -13,7 +13,8 @@
         </p>
         <p>Description
             </br>
-            <textarea type="text" name="description" value=""></textarea>
+            <!-- The style is added in line here becasue there is a conflict with all other p tags' style. -->
+            <textarea type="text" name="description" style="color: #554535;"></textarea>
         </p>
         <p>Picture Path
             </br>
@@ -33,7 +34,8 @@
         </p>
         <p>Category
             <!-- Dynamically generates a list of all categories. -->
-            <select name="category_id" value="" required="">
+            <!-- The style is added in line here becasue there is a conflict with all other p tags' style. -->
+            <select name="category_id" value="" required="" style="color: #554535;">
                 <option value=""></option>
                 {% for category in categories %} 
                     <option value="{{category.id}}">{{category.name}}</option>
