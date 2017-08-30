@@ -102,8 +102,10 @@ p.btn {
 }
 
 .flashes {
-    color: #ede4c7;
-    font-size: 2em;
+    text-align: center;
+    color: red;
+    font-size: 1.15em;
+    background-color: #554535;
 }
 
 
