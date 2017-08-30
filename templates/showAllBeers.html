@@ -3,11 +3,12 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
-
+    
     <h1>Laurence Brewing and Distributing CO.</h1>
     </br>
     </br>
 
+    <!-- Message Flashing -->
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class=flashes>
@@ -20,7 +21,8 @@
 
     <div class=" col-md-12 header">
         <div class="col-md-6 all_image">
-            <img src="../static/images/ibu_vs_abv.jpeg" alt="Image of a graph of IBU (bitterness) vs. ABV (alcohol content).">
+            <!-- The style is added in line here becasue there is a conflict with all other img tags' style. -->
+            <img src="../static/images/ibu_vs_abv.jpeg" alt="Image of a graph of IBU (bitterness) vs. ABV (alcohol content)." style="border: none;">
         </div>
         <!-- Templates dynamically generating the appropriate 'category'. -->
         <div class=" col-md-5 beer_categories">

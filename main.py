@@ -143,13 +143,44 @@ def showAllBeersJSON():
 # Helper Methods
 ###
 
+def createUser(login_session):
+    newUser = User(name=login_session['username'])
+    session.add(newUser)
+    session.commit()
+    user = session.query(User).filter_by(username=login_session['username']).one()
+    return user.id
+
+
+def getUserInfo(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    return user
+
+
+def getUserID(username):
+    try:
+        user = session.query(User).filter_by(username=username).one()
+        return user.id
+    except:
+        return None
+
 
 ###
 # Login Page
 ###
 @app.route('/login')
 def showLogin():
-    return ("The current session state is %s" % login_session['state'])
+    if login_session:
+        state = "Logged In"
+    else:
+        state = "Logged Out"
+    return ("The current session state is %s" % state)
+    '''
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                    for x in range(32))
+    login_session['state'] = state
+    print ("The current session state is %s" % login_session['state'])
+    return render_template('login.html', STATE=state)
+    '''
 
 ###
 # Begin Google Plus Sign-In
