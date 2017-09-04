@@ -108,6 +108,9 @@ p.btn {
     background-color: #554535;
 }
 
+.owned_beer {
+    color: green;
+}
 
 /* Beer Specific Page Specific */
 

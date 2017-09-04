@@ -5,8 +5,8 @@
 {% include "header.html" %}
     
     <h1>Laurence Brewing and Distributing CO.</h1>
-    </br>
-    </br>
+    <br>
+    <br>
 
     <!-- Message Flashing -->
     {% with messages = get_flashed_messages() %}
@@ -42,7 +42,7 @@
         {% endfor %}
         </div>
     </div>
-    </br>
+    <br>
     
     <div class="col-md-12 current_style">
         {% if category_name %}
@@ -67,9 +67,14 @@
         </div>
         <div class="col-md-8">
             <h3>{{item.name}}</h3>
-            </br>
+            <br>
             <p class="truncate">{{item.description}}</p>
             <a href="{{url_for('showSpecificBeer', item_id = item.id)}}"><p class="btn btn-default">Click for Details</p></a>
+            <br>
+            {% if isLoggedIn and isOwner(item.id) %}
+                <br>
+                <p class="owned_beer">*Your Beer</p>
+            {% endif %}
         </div>
     </div>
     {% endfor %}

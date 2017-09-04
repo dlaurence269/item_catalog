@@ -42,7 +42,7 @@ def showAllBeers():
     # Do something with the beers list
     print (login_session)
     return render_template('showAllBeers.html', categories=categories, items=items,
-                            Item=Item, category_name=category_name, isLoggedIn=isLoggedIn())
+                            Item=Item, category_name=category_name, isLoggedIn=isLoggedIn(), isOwner=isOwner)
 
 # 2. Show specific beer
 # GET - See a specific item in detail
