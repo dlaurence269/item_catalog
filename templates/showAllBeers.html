@@ -73,7 +73,9 @@
             <br>
             {% if isLoggedIn and isOwner(item.id) %}
                 <br>
-                <p class="owned_beer">*Your Beer</p>
+                <p class="owned_beer">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Your Beer
+                </p>
             {% endif %}
         </div>
     </div>
