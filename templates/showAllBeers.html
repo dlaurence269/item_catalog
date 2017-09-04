@@ -52,10 +52,12 @@
         {% endif %}
     </div>
 
-    <!-- Create New Beer -->
-    <div class="col-md-12 create_new_beer">
-        <a href="{{url_for('newBeer')}}" class="btn btn-default">+ Add a Beer</a>
-    </div>
+    {% if isLoggedIn %}
+        <!-- Create New Beer -->
+        <div class="col-md-12 create_new_beer">
+            <a href="{{url_for('newBeer')}}" class="btn btn-default">+ Add a Beer</a>
+        </div>
+    {% endif %}
 
     <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
     {% for item in items %}

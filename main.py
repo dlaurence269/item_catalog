@@ -29,7 +29,6 @@ session = DBSession()
 def showAllBeers():
     # Returns all Categories
     categories = session.query(Category).order_by(asc(Category.name))
-    
     query = session.query(Item)
     category_id_filter = request.args.get('category_id')
     # If a Category is selected, return the beers within that category
@@ -37,19 +36,20 @@ def showAllBeers():
     if category_id_filter is not None:
         query = query.filter(Item.category_id == int(category_id_filter))
         category_name = session.query(Category).filter(Category.id == int(category_id_filter)).one().name
-    # Return results, if there is no category, all beers will show.
+    # Return results, if there is no category, all beers will show
     print (query)
     items = query.all()
-    # do something with the beers list
+    # Do something with the beers list
+    print (login_session)
     return render_template('showAllBeers.html', categories=categories, items=items,
-                            Item=Item, category_name=category_name)
+                            Item=Item, category_name=category_name, isLoggedIn=isLoggedIn())
 
 # 2. Show specific beer
 # GET - See a specific item in detail
 @app.route('/beers/<int:item_id>')
 def showSpecificBeer(item_id):
     item = session.query(Item).filter_by(id=item_id).one()
-    return render_template('showSpecificBeer.html', item=item)
+    return render_template('showSpecificBeer.html', item=item, isLoggedIn=isLoggedIn(), isOwner=isOwner(item_id))
 
 # 3. New
 # GET - View to create a new item
@@ -57,6 +57,8 @@ def showSpecificBeer(item_id):
 @app.route('/beers/new', methods=['GET', 'POST'])
 def newBeer():
     categories = session.query(Category).order_by(Category.id).all()
+    if not isLoggedIn():
+        return redirect('/')
     if request.method == 'POST':
         newItem = Item(name=request.form['name'], description=request.form['description'], 
                         picture_path=request.form['picture_path'], price=request.form['price'], 
@@ -67,7 +69,7 @@ def newBeer():
         flash('New Beer Successfully Created')#flash('New Beer %s Successfully Created' % newItem.name)
         return redirect(url_for('showAllBeers'))
     else:
-        return render_template('newBeer.html', categories=categories)
+        return render_template('newBeer.html', categories=categories, isLoggedIn=isLoggedIn())
 
 # 4. Edit
 # GET - View to edit a specific item
@@ -76,6 +78,8 @@ def newBeer():
 def editBeer(item_id):
     editedItem = session.query(Item).filter_by(id=item_id).one()
     categories = session.query(Category).order_by(Category.id).all()
+    if not isLoggedIn() or not isOwner(item_id):
+        return redirect('/')
     if request.method == 'POST':
         if request.form['name']:
             editedItem.name = request.form['name']
@@ -97,7 +101,7 @@ def editBeer(item_id):
         return redirect(url_for('showAllBeers'))
     else:
         print (editedItem.category_id)
-        return render_template('editBeer.html', item=editedItem, categories=categories)
+        return render_template('editBeer.html', item=editedItem, categories=categories, isLoggedIn=isLoggedIn())
 
 # 5. Delete
 # GET - View to delete a specific item (only if no popup)
@@ -105,13 +109,15 @@ def editBeer(item_id):
 @app.route('/beers/<int:item_id>/delete', methods=['GET', 'POST'])
 def deleteBeer(item_id):
     itemToDelete = session.query(Item).filter_by(id=item_id).one()
+    if not isLoggedIn() or not isOwner(item_id):
+        return redirect('/')
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()
         flash('Beer Successfully Deleted')#flash('%s Successfully Deleted' % itemToDelete.name)
         return redirect(url_for('showAllBeers', item_id=item_id))
     else:
-        return render_template('deleteBeer.html', item=itemToDelete)
+        return render_template('deleteBeer.html', item=itemToDelete, isLoggedIn=isLoggedIn())
 
 
 ########################
@@ -142,38 +148,34 @@ def showAllBeersJSON():
 ###
 # Helper Methods
 ###
+   
+# Validate login
+def isLoggedIn():
+    return 'username' in login_session
 
-def createUser(login_session):
-    newUser = User(name=login_session['username'])
-    session.add(newUser)
-    session.commit()
-    user = session.query(User).filter_by(username=login_session['username']).one()
-    return user.id
-
-
-def getUserInfo(user_id):
-    user = session.query(User).filter_by(id=user_id).one()
-    return user
-
-
-def getUserID(username):
-    try:
-        user = session.query(User).filter_by(username=username).one()
-        return user.id
-    except:
-        return None
+# Validate user / owner
+def isOwner(item_id):
+    # Check who is the current User logged-in
+    current_username = login_session['username']
+    # Check which User created the item
+    selectedItem = session.query(Item).filter_by(id=item_id).one()
+    if selectedItem is None:
+        return False
+    item_user_id = selectedItem.user_id
+    item_user = session.query(User).filter_by(id=item_user_id).one()
+    # Check if the current User logged-in is the User that created the item
+    return ((item_user is not None) and (item_user.username == current_username))
 
 
 ###
 # Login Page
 ###
-@app.route('/login')
-def showLogin():
-    if login_session:
-        state = "Logged In"
-    else:
-        state = "Logged Out"
-    return ("The current session state is %s" % state)
+# click on login button to change state
+# create a session so that username can be tracked
+@app.route('/login', methods=['POST'])
+def login():
+    login_session['username'] = "Bender Barista"
+    return redirect('/')
     '''
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in range(32))
@@ -181,6 +183,12 @@ def showLogin():
     print ("The current session state is %s" % login_session['state'])
     return render_template('login.html', STATE=state)
     '''
+@app.route('/logout', methods=['POST'])
+def logout():
+    login_session.pop('username', None)
+    return redirect('/')
+
+
 
 ###
 # Begin Google Plus Sign-In
