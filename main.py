@@ -6,6 +6,8 @@ from flask import session as login_session
 import json
 import random
 import string
+import urllib
+import requests
 
 
 app = Flask(__name__)
@@ -35,7 +37,7 @@ def showAllBeers():
     category_name = None
     if category_id_filter is not None:
         query = query.filter(Item.category_id == int(category_id_filter))
-        category_name = session.query(Category).filter(Category.id == int(category_id_filter)).one().name
+        category_name = session.query(Category).filter(Category.id == int(category_id_filter)).first().name
     # Return results, if there is no category, all beers will show
     print (query)
     items = query.all()
@@ -48,7 +50,7 @@ def showAllBeers():
 # GET - See a specific item in detail
 @app.route('/beers/<int:item_id>')
 def showSpecificBeer(item_id):
-    item = session.query(Item).filter_by(id=item_id).one()
+    item = session.query(Item).filter_by(id=item_id).first()
     return render_template('showSpecificBeer.html', item=item, isLoggedIn=isLoggedIn(), isOwner=isOwner(item_id))
 
 # 3. New
@@ -76,7 +78,7 @@ def newBeer():
 # POST - Update a specific item
 @app.route('/beers/<int:item_id>/edit', methods=['GET', 'POST'])
 def editBeer(item_id):
-    editedItem = session.query(Item).filter_by(id=item_id).one()
+    editedItem = session.query(Item).filter_by(id=item_id).first()
     categories = session.query(Category).order_by(Category.id).all()
     if not isLoggedIn() or not isOwner(item_id):
         return redirect('/')
@@ -108,7 +110,7 @@ def editBeer(item_id):
 # POST - Delete a specific item
 @app.route('/beers/<int:item_id>/delete', methods=['GET', 'POST'])
 def deleteBeer(item_id):
-    itemToDelete = session.query(Item).filter_by(id=item_id).one()
+    itemToDelete = session.query(Item).filter_by(id=item_id).first()
     if not isLoggedIn() or not isOwner(item_id):
         return redirect('/')
     if request.method == 'POST':
@@ -128,7 +130,7 @@ def deleteBeer(item_id):
 # GET - View JSON for a specific item
 @app.route('/beers/<int:item_id>/json')
 def showSpecificBeerJSON(item_id):
-    specificBeer = session.query(Item).filter_by(id=item_id).one()
+    specificBeer = session.query(Item).filter_by(id=item_id).first()
     return jsonify(specificBeer.serialize)
     #return "This is the view a specific item in JSON page."
 
@@ -158,11 +160,11 @@ def isOwner(item_id):
     # Check who is the current User logged-in
     current_username = login_session['username']
     # Check which User created the item
-    selectedItem = session.query(Item).filter_by(id=item_id).one()
+    selectedItem = session.query(Item).filter_by(id=item_id).first()
     if selectedItem is None:
         return False
     item_user_id = selectedItem.user_id
-    item_user = session.query(User).filter_by(id=item_user_id).one()
+    item_user = session.query(User).filter_by(id=item_user_id).first()
     # Check if the current User logged-in is the User that created the item
     return ((item_user is not None) and (item_user.username == current_username))
 
@@ -172,10 +174,11 @@ def isOwner(item_id):
 ###
 # click on login button to change state
 # create a session so that username can be tracked
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET'])
 def login():
-    login_session['username'] = "Bender Barista"
-    return redirect('/')
+    redirect_uri = urllib.parse.quote("http://lvh.me:8000/authorized")
+    return redirect('http://github.com/login/oauth/authorize?client_id=Iv1.c9176e57e7b2b023&redirect_uri=' + redirect_uri)
+
     '''
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in range(32))
@@ -183,6 +186,54 @@ def login():
     print ("The current session state is %s" % login_session['state'])
     return render_template('login.html', STATE=state)
     '''
+
+@app.route('/authorized', methods=['GET'])
+def authorized():
+    #make a POST request, remember dict == dictionary
+    dictToSend = {'client_id':'Iv1.c9176e57e7b2b023',
+                    'client_secret':'86d63fea4a2fd0e28163a312fd1e92b44a875553',
+                    'code':request.args.get('code')}
+    headers = {'accept':'application/json'}
+    response = requests.post('https://github.com/login/oauth/access_token', json=dictToSend, headers=headers)
+    print ('response from server:',response.text)
+    dictFromServer = response.json()
+    token = dictFromServer['access_token']
+    return get_user_info(token)
+
+    # GET request with access token to get user info
+def get_user_info(token):
+    headers = {'accept':'application/json'}
+    response = requests.get('https://api.github.com/user?access_token='+token, headers=headers)
+    print ('response from server:',response.text)
+    # make this in to proper json, and parse out relevant information: username (login), and later ID
+    github_user_info_dict = response.json()
+    github_username = github_user_info_dict['login']
+    return use_or_create_user(github_username)
+
+    
+    # find or create on user model
+    ## query to see if user exists, if not create one
+def use_or_create_user(github_username):
+    user = session.query(User).filter_by(username=github_username).first()
+    if user is None:
+        newUser = User(username=github_username)
+        session.add(newUser)
+        session.commit()
+        flash('New User Successfully Added')
+        user = newUser
+    # set user in session
+    login_session['username'] = user.username
+    print ("login_session['username'] = "+login_session['username'])
+    # redirect to home page
+    return redirect(url_for('showAllBeers'))
+
+
+
+    
+    
+
+
+
 @app.route('/logout', methods=['POST'])
 def logout():
     login_session.pop('username', None)
@@ -191,7 +242,7 @@ def logout():
 
 
 ###
-# Begin Google Plus Sign-In
+# Begin GitHub Sign-In
 ###
 
 

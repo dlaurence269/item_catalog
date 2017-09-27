@@ -10,6 +10,7 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'users'
 
+# add column for oauth user id
     id = Column(Integer, primary_key=True)
     username = Column(String(50), nullable=False)
 
