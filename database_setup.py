@@ -14,6 +14,14 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String(50), nullable=False)
 
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'username': self.username,
+            'id': self.id
+        }
+
 #######################   MAKE CATEGORY NULLABLE = FALSE  ??????????????????????????????????????????
 class Category(Base):
     __tablename__ = 'categories'
@@ -28,7 +36,7 @@ class Category(Base):
         """Return object data in easily serializeable format"""
         return {
             'name': self.name,
-            'id': self.id,
+            'id': self.id
         }
 
 

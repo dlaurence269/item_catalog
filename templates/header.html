@@ -23,8 +23,8 @@
         {% endif %}  
         -->
         {% if isLoggedIn %}
-            <form action="/logout" method="GET">
-                <input type="submit" value="Logout" class="btn btn-default">
+            <form action="/logout" method="POST">
+                <input type="submit" value="Logout {{currentUserName}}" class="btn btn-default"  >
             </form>
         {% else %}
             <form action="/login" method="GET">

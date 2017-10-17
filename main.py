@@ -29,6 +29,8 @@ session = DBSession()
 @app.route('/') # GET - Landing page, directs routes to /beer
 @app.route('/beers') # GET - List of all beer
 def showAllBeers():
+    # User
+    username = currentUserName()
     # Returns all Categories
     categories = session.query(Category).order_by(asc(Category.name))
     query = session.query(Item)
@@ -44,14 +46,16 @@ def showAllBeers():
     # Do something with the beers list
     print (login_session)
     return render_template('showAllBeers.html', categories=categories, items=items,
-                            Item=Item, category_name=category_name, isLoggedIn=isLoggedIn(), isOwner=isOwner)
+                            Item=Item, category_name=category_name, isLoggedIn=isLoggedIn(),
+                            isOwner=isOwner, username=username, currentUserName=currentUserName())
 
 # 2. Show specific beer
 # GET - See a specific item in detail
 @app.route('/beers/<int:item_id>')
 def showSpecificBeer(item_id):
     item = session.query(Item).filter_by(id=item_id).first()
-    return render_template('showSpecificBeer.html', item=item, isLoggedIn=isLoggedIn(), isOwner=isOwner(item_id))
+    return render_template('showSpecificBeer.html', item=item, isLoggedIn=isLoggedIn(), 
+                            isOwner=isOwner(item_id), currentUserName=currentUserName())
 
 # 3. New
 # GET - View to create a new item
@@ -62,16 +66,25 @@ def newBeer():
     if not isLoggedIn():
         return redirect('/')
     if request.method == 'POST':
+        # find username in current session
+        # find the user_id associated with that username
+        # create one if one doesn't already exist
+        # use the user_id for Item in newItem
+
+        ###### YOU NEED TO ADD AN ENTRY FOR USER (i.e. user_id or username etc.) UNDER newItem
+        ###### WHEN CREATING A NEW BEER IN ORDER FOR NEW BEERS TO HAVE A USER ASSOCIATED!!!
+        print ('This is the print statement BEFORE the item is created with currentUserId value of %s' % currentUserId())
         newItem = Item(name=request.form['name'], description=request.form['description'], 
                         picture_path=request.form['picture_path'], price=request.form['price'], 
                         ibu=request.form['ibu'], abv=request.form['abv'],
-                        category_id=request.form['category_id'])
+                        category_id=request.form['category_id'], user_id=currentUserId())
         session.add(newItem)
         session.commit()
-        flash('New Beer Successfully Created')#flash('New Beer %s Successfully Created' % newItem.name)
+        print ('This is the print statement AFTER the item is created with newItem.user_id value of %s' % newItem.user_id)
+        flash('New Beer "%s" Successfully Created' % newItem.name)
         return redirect(url_for('showAllBeers'))
     else:
-        return render_template('newBeer.html', categories=categories, isLoggedIn=isLoggedIn())
+        return render_template('newBeer.html', categories=categories, isLoggedIn=isLoggedIn(), currentUserName=currentUserName())
 
 # 4. Edit
 # GET - View to edit a specific item
@@ -99,11 +112,12 @@ def editBeer(item_id):
             editedItem.category_id = request.form['category_id']
         session.add(editedItem)
         session.commit()
-        flash('Beer Successfully Edited')#flash('Beer Successfully Edited %s' % editedItem.name)
+        flash('"%s" Successfully Edited' % editedItem.name) # flash('Beer Successfully Edited')#
         return redirect(url_for('showAllBeers'))
     else:
         print (editedItem.category_id)
-        return render_template('editBeer.html', item=editedItem, categories=categories, isLoggedIn=isLoggedIn())
+        return render_template('editBeer.html', item=editedItem, categories=categories, 
+                                isLoggedIn=isLoggedIn(), currentUserName=currentUserName())
 
 # 5. Delete
 # GET - View to delete a specific item (only if no popup)
@@ -116,10 +130,10 @@ def deleteBeer(item_id):
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()
-        flash('Beer Successfully Deleted')#flash('%s Successfully Deleted' % itemToDelete.name)
+        flash('"%s" Successfully Deleted' % itemToDelete.name) # flash('Beer Successfully Deleted')#
         return redirect(url_for('showAllBeers', item_id=item_id))
     else:
-        return render_template('deleteBeer.html', item=itemToDelete, isLoggedIn=isLoggedIn())
+        return render_template('deleteBeer.html', item=itemToDelete, isLoggedIn=isLoggedIn(), currentUserName=currentUserName())
 
 
 ########################
@@ -152,13 +166,22 @@ def showAllBeersJSON():
 ###
    
 # Validate login
+def currentUser():
+    return login_session.get('user')
+
+def currentUserName():
+    return currentUser().get('username')
+
+def currentUserId():
+    return currentUser().get('id')
+
 def isLoggedIn():
-    return 'username' in login_session
+    return bool(currentUser())
 
 # Validate user / owner
 def isOwner(item_id):
     # Check who is the current User logged-in
-    current_username = login_session['username']
+    current_username = currentUserName()
     # Check which User created the item
     selectedItem = session.query(Item).filter_by(id=item_id).first()
     if selectedItem is None:
@@ -208,6 +231,7 @@ def get_user_info(token):
     # make this in to proper json, and parse out relevant information: username (login), and later ID
     github_user_info_dict = response.json()
     github_username = github_user_info_dict['login']
+    # github_userid = github_user_info_dict['id']
     return use_or_create_user(github_username)
 
     
@@ -222,15 +246,9 @@ def use_or_create_user(github_username):
         flash('New User Successfully Added')
         user = newUser
     # set user in session
-    login_session['username'] = user.username
-    print ("login_session['username'] = "+login_session['username'])
+    login_session['user'] = user.serialize
     # redirect to home page
     return redirect(url_for('showAllBeers'))
-
-
-
-    
-    
 
 
 
