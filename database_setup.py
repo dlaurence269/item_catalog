@@ -10,7 +10,6 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'users'
 
-# add column for oauth user id
     id = Column(Integer, primary_key=True)
     username = Column(String(50), nullable=False)
 
@@ -22,14 +21,11 @@ class User(Base):
             'id': self.id
         }
 
-#######################   MAKE CATEGORY NULLABLE = FALSE  ??????????????????????????????????????????
 class Category(Base):
     __tablename__ = 'categories'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
-    user_id = Column(Integer, ForeignKey('users.id'))
-    user = relationship(User)
 
     @property
     def serialize(self):
@@ -55,7 +51,6 @@ class Item(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship(User)
 
-#######################   REARRANGE SERIALIZE ORDER / INFO  ??????????????????????????????????????????
     @property
     def serialize(self):
         """Return object data in easily serializeable format"""
