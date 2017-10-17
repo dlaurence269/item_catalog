@@ -28,4 +28,7 @@
 * Make sure that you either have pyton 3, or you can run a virtual environment for it, or you convert the code to python 2.
 * Everyone can Read, Make sure you signed in in order to Create.
 * Confirm that you are the owner of an item if you are trying to Edit (Update) or Delete it.
+<<<<<<< HEAD
 * I already populated the database with some basic entries. If for some reason you need to wipe your local version of the database you can either pull it down from Github again, or you can run the "populate_beers.py" file I included.
+=======
+>>>>>>> development
