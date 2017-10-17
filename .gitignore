@@ -1,0 +1,9 @@
+*.pyc
+
+__pycache__/
+
+Things left to do
+
+venv_p3_item_catalog/
+
+oauth-rails-example-master/

@@ -1,0 +1,49 @@
+<title>Create a New Beer</title>
+
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+    <h1>Add New Beer</h1>
+    <!-- The placeholders are a suggestion of possible values -->
+    <form action="#" method = "post">
+        <p>Name
+            <br>
+            <input type="text" name="name" value="" placeholder="Full Beer Name">
+        </p>
+        <p>Description
+            <br>
+            <!-- The style is added in line here becasue there is a conflict with all other p tags' style. -->
+            <textarea type="text" name="description" style="color: #554535;"></textarea>
+        </p>
+        <p>Picture Path
+            <br>
+            <input type="text" name="picture_path" value="../static/images/stock.jpg">
+        </p>
+        <p>Price
+            <br>
+            <input type="text" name="price" value="" placeholder="$5.99">
+        </p>
+        <p>IBU
+            <br>
+            <input type="number" step=".01" name="ibu" min="0" max="100" value="" placeholder="30" required="">
+        </p>
+        <p>ABV
+            <br>
+            <input type="number" step=".01" name="abv" min="0" max="100" value="" placeholder="5" required="">
+        </p>
+        <p>Category
+            <!-- Dynamically generates a list of all categories. -->
+            <!-- The style is added in line here becasue there is a conflict with all other p tags' style. -->
+            <select name="category_id" value="" required="" style="color: #554535;">
+                <option value=""></option>
+                {% for category in categories %} 
+                    <option value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <input type="submit" value="Save New" class="btn btn-default">
+        <a href="{{url_for('showAllBeers')}}" class="btn btn-default">Cancel</a>
+    </form>
+
+{% endblock %}

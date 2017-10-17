@@ -1,0 +1,85 @@
+<title>Landing Page: All Beers</title>
+    
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+    
+    <h1>Laurence Brewing and Distributing CO.</h1>
+    <br>
+    <br>
+
+    <!-- Message Flashing -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class=" col-md-12 header">
+        <div class="col-md-6 all_image">
+            <!-- The style is added in line here becasue there is a conflict with all other img tags' style. -->
+            <img src="../static/images/ibu_vs_abv.jpeg" alt="Image of a graph of IBU (bitterness) vs. ABV (alcohol content)." style="border: none;">
+        </div>
+        <!-- Templates dynamically generating the appropriate 'category'. -->
+        <div class=" col-md-5 beer_categories">
+        <h2>Beer Styles</h2>
+        <!-- Dynamically shows current style (category) selected -->
+        <div class="col-md-12 current_style">
+            {% if category_name %}
+                <h4>{{category_name}} selected, scroll down to see {{category_name}} beers.</h4>
+            {% else %}
+                <h4>No style selected, scroll down to see all beers. Select a beer style to see beers of that style only.</h4>
+            {% endif %}
+        </div>
+        {% for category in categories %}
+            <div class="col-md-12 btn-group btn-group-justified">
+                <a href="/beers?category_id={{category.id}}" class="btn btn-default">{{category.name}}</a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <br>
+    
+    <div class="col-md-12 current_style">
+        {% if category_name %}
+            <h2>{{category_name}} Beers</h2>
+        {% else %}
+            <h2>All Beers</h2>
+        {% endif %}
+    </div>
+
+    {% if isLoggedIn %}
+        <!-- Create New Beer -->
+        <div class="col-md-12 create_new_beer">
+            <a href="{{url_for('newBeer')}}" class="btn btn-default">+ Add a Beer</a>
+        </div>
+    {% endif %}
+
+    <!-- Templating dynamically generates the appropriate 'picture', 'beer name', and 'beer' description. -->
+    {% for item in items %}
+    <div class="col-md-12 list_of_beers">
+        <div class="col-md-3">
+            <img src="{{item.picture_path}}" alt="Image of a Beer.">
+        </div>
+        <div class="col-md-8">
+            <h3>{{item.name}}</h3>
+            <br>
+            <p class="truncate">{{item.description}}</p>
+            <a href="{{url_for('showSpecificBeer', item_id = item.id)}}"><p class="btn btn-default">Click for Details</p></a>
+            <br>
+            {% if isLoggedIn and isOwner(item.id) %}
+                <br>
+                <p class="owned_beer">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp; Your Beer
+                </p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+  
+
+{% endblock %}

@@ -1,0 +1,44 @@
+<title>Specific Beer Details</title>
+
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+    <!-- Header -->
+    <h1>{{item.name}}</h1>
+    
+    <!-- Image and Description -->
+    <div class="col-md-12 specific_image">
+        <img src="{{item.picture_path}}" alt="Image of a Beer">
+    </div>
+    <div class="col-md-12 specific_description">
+        <p>{{item.description}}</p>
+    </div>   
+    <!-- Price, IBU, ABV -->
+    
+    <br>
+    <div class="col-md-12 price_ibu_abv">
+        <div class="col-md-2 price">
+            <p>Price: {{item.price}}</p>
+        </div>
+        <div class="col-md-2 ibu">
+            <p>IBU: {{item.ibu}}</p>
+        </div>
+        <div class="col-md-2 abv">
+            <p>ABV: {{item.abv}}</p>
+        </div>
+        <div class="col-md-3 category_id">
+            <p>Category: {{item.category.name}}</p>
+        </div>
+    </div>
+
+    {% if isLoggedIn and isOwner %}
+        <!-- Edit and Delete buttons. -->
+        <div class="col-md-12 specific_POST">
+            <a href="{{url_for('editBeer', item_id = item.id)}}" class="btn btn-default">Edit</a>
+            <a href="{{url_for('deleteBeer', item_id = item.id)}}" class="btn btn-default">Delete</a>
+        </div>
+    {% endif %}
+
+
+{% endblock %}
