@@ -26,8 +26,8 @@ session = DBSession()
 
 # 1. Landing
 # GET - All Beers
-@app.route('/') # GET - Landing page, directs routes to /beer
-@app.route('/beers') # GET - List of all beer
+@app.route('/item_catalog/') # GET - Landing page, directs routes to /beer
+@app.route('/item_catalog/beers') # GET - List of all beer
 def showAllBeers():
     # User
     username = currentUserName()
@@ -51,7 +51,7 @@ def showAllBeers():
 
 # 2. Show specific beer
 # GET - See a specific item in detail
-@app.route('/beers/<int:item_id>')
+@app.route('/item_catalog/beers/<int:item_id>')
 def showSpecificBeer(item_id):
     item = session.query(Item).filter_by(id=item_id).first()
     return render_template('showSpecificBeer.html', item=item, isLoggedIn=isLoggedIn(), 
@@ -60,7 +60,7 @@ def showSpecificBeer(item_id):
 # 3. New
 # GET - View to create a new item
 # POST - Create a new item
-@app.route('/beers/new', methods=['GET', 'POST'])
+@app.route('/item_catalog/beers/new', methods=['GET', 'POST'])
 def newBeer():
     categories = session.query(Category).order_by(Category.id).all()
     if not isLoggedIn():
@@ -80,7 +80,7 @@ def newBeer():
 # 4. Edit
 # GET - View to edit a specific item
 # POST - Update a specific item
-@app.route('/beers/<int:item_id>/edit', methods=['GET', 'POST'])
+@app.route('/item_catalog/beers/<int:item_id>/edit', methods=['GET', 'POST'])
 def editBeer(item_id):
     editedItem = session.query(Item).filter_by(id=item_id).first()
     categories = session.query(Category).order_by(Category.id).all()
@@ -113,7 +113,7 @@ def editBeer(item_id):
 # 5. Delete
 # GET - View to delete a specific item (only if no popup)
 # POST - Delete a specific item
-@app.route('/beers/<int:item_id>/delete', methods=['GET', 'POST'])
+@app.route('/item_catalog/beers/<int:item_id>/delete', methods=['GET', 'POST'])
 def deleteBeer(item_id):
     itemToDelete = session.query(Item).filter_by(id=item_id).first()
     if not isLoggedIn() or not isOwner(item_id):
@@ -133,14 +133,14 @@ def deleteBeer(item_id):
 
 # 1. JSON Specific Beer
 # GET - View JSON for a specific item
-@app.route('/beers/<int:item_id>/json')
+@app.route('/item_catalog/beers/<int:item_id>/json')
 def showSpecificBeerJSON(item_id):
     specificBeer = session.query(Item).filter_by(id=item_id).first()
     return jsonify(specificBeer.serialize)
 
 # 2. JSON All Beers
 # GET - View JSON for all items (in alphabetical order)
-@app.route('/beers/json')
+@app.route('/item_catalog/beers/json')
 def showAllBeersJSON():
     allBeers = session.query(Item).all()
     return jsonify([b.serialize for b in allBeers])
@@ -188,9 +188,9 @@ def isOwner(item_id):
 ###
 # click on login button to change state
 # create a session so that username can be tracked
-@app.route('/login', methods=['GET'])
+@app.route('/item_catalog/login', methods=['GET'])
 def login():
-    redirect_uri = urllib.parse.quote("http://lvh.me:8000/authorized")
+    redirect_uri = urllib.parse.quote("http://daniellaurence.com/item_catalog/authorized")
     return redirect('http://github.com/login/oauth/authorize?client_id=Iv1.c9176e57e7b2b023&redirect_uri=' + redirect_uri)
 
     '''
@@ -201,7 +201,7 @@ def login():
     return render_template('login.html', STATE=state)
     '''
 
-@app.route('/authorized', methods=['GET'])
+@app.route('/item_catalog/authorized', methods=['GET'])
 def authorized():
     #make a POST request, remember dict == dictionary
     dictToSend = {'client_id':'Iv1.c9176e57e7b2b023',
@@ -241,7 +241,7 @@ def use_or_create_user(github_username):
     return redirect(url_for('showAllBeers'))
 
 
-@app.route('/logout', methods=['POST'])
+@app.route('/item_catalog/logout', methods=['POST'])
 def logout():
     login_session.pop('user', None)
     return redirect('/')
