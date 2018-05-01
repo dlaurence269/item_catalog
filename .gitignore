@@ -1,4 +1,7 @@
-*pyc
-Things left to do
-oauth-rails-example-master/
+*.pyc
+
+__pycache__/
+
 venv_p3_item_catalog/
+
+venvp3_beer/
