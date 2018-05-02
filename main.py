@@ -190,7 +190,7 @@ def isOwner(item_id):
 # create a session so that username can be tracked
 @app.route('/login', methods=['GET'])
 def login():
-    redirect_uri = urllib.parse.quote("http://lvh.me:8000/authorized")
+    redirect_uri = urllib.parse.quote("http://beers.daniellaurence.com/authorized")
     return redirect('http://github.com/login/oauth/authorize?client_id=Iv1.c9176e57e7b2b023&redirect_uri=' + redirect_uri)
 
     '''
