@@ -7,6 +7,8 @@
 * This project is to show that we can develop a RESTful web application using the Python framework Flask along with implementing third-party OAuth authentication. We need to properly use the various HTTP methods available to us and relate them to CRUD (create, read, update and delete) operations.
 
 # How can the code be run?
+* Visit http://beers.daniellaurence.com/
+* OR
 * Clone or Fork this repository.
 * In your teminal window / command line type "python main.py"
 * Open your web browser to http://lvh.me:8000/ and begin navigating the pages.
