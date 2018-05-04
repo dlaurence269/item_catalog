@@ -1,4 +1,5 @@
 # What is This Project?
+* Besides the below, this project is also part of the final project; the Linux Server Project. The goal being to host an old project on a server that we configured and secured ourselves.
 * This project is one of the main projects for Udacity's Full Stack Nanodegree.
 * This is the final project for the "Backend" section of the course.
 * We were instructed to create an "Item Catalog" website that provides a list of items within a variety of catgories.
