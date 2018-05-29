@@ -1,13 +1,14 @@
-# What is This Project?
-* Besides the below, this project is also part of the final project; the Linux Server Project. The goal being to host an old project on a server that we configured and secured ourselves.
-* This project is one of the main projects for Udacity's Full Stack Nanodegree.
-* This is the final project for the "Backend" section of the course.
-* We were instructed to create an "Item Catalog" website that provides a list of items within a variety of catgories.
-* We also needed to provide a user registration and authentication system handled by third party OAuth providers like Google, Facebook, or in my case Github.
-* Registered users will have the ability to post, edit and delete their own items.
-* This project is to show that we can develop a RESTful web application using the Python framework Flask along with implementing third-party OAuth authentication. We need to properly use the various HTTP methods available to us and relate them to CRUD (create, read, update and delete) operations.
+# Purpose
+* While this project is "Full Stack" in of itself, it is the final project for the "Backend" section of the Udacity Full Stack Web Developer course.
+* This project is an "Item Catalog" website that provides a list of items within a variety of catgories.
+* It also has a user registration and authentication system handled by third party OAuth providers like Google, Facebook, or in this case Github.
+* Registered users will have the ability to post, edit and delete their own items, CRUD (create, read, update and delete) operations.
+* This project showcases RESTful web application development using the Python framework Flask along with implementation of  third-party OAuth authentication. 
 
-# How can the code be run?
+# Update
+* After submission this project was updated to also part of the final Udacity project; the Linux Server Project. The goal being to configure and secure a server, and then host an old project on it, this project.
+
+# Running the Code
 * Visit http://beers.daniellaurence.com/
 * OR
 * Clone or Fork this repository.
@@ -16,7 +17,7 @@
 * You will need to have python 3, and the sqlalchemy and flask libraries installed to run this code.
 * You will need to have a Github account, either prior to signing in, or create one through the sign-in process.
 
-# How to test the functionality of the website?
+# Test Website Functionality
 * Scroll down the page looking at the contents. You should be able to click on 3 things.
     1. The "Login" button, which will take you through the Login flow (Github is the third party OAuth provider).
     2. The "Beer Categories". By selecting a beer category you can narrow the list of results to the specific beer category chosen.
