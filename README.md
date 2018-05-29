@@ -1,12 +1,11 @@
 # Purpose
-* While this project is "Full Stack" in of itself, it is the final project for the "Backend" section of the Udacity Full Stack Web Developer course.
-* This project is an "Item Catalog" website that provides a list of items within a variety of catgories.
-* It also has a user registration and authentication system handled by third party OAuth providers like Google, Facebook, or in this case Github.
-* Registered users will have the ability to post, edit and delete their own items, CRUD (create, read, update and delete) operations.
-* This project showcases RESTful web application development using the Python framework Flask along with implementation of  third-party OAuth authentication. 
+* While this project is "Full Stack" in of itself, it is the final project for the "Backend" section of the Udacity Full Stack Web Developer Nanodegree.
+* This project is an "Item Catalog" website (beer theme) that provides a list of items (beers) within a variety of catgories (beer styles), where all data is persisted in PostgreSQL.
+* It also has a user registration and authentication system (third-party OAuth authentication) using the Github API.
+* Utilizes CRUD operations: Everyone can Read, anyone logged in can Create a new item, owners of an item can Edit (Update) or Delete it.
 
 # Update
-* After submission this project was updated to also part of the final Udacity project; the Linux Server Project. The goal being to configure and secure a server, and then host an old project on it, this project.
+* After submission this project was updated to also part of the Linux Server Project, Udacity's final. The goal being to configure and secure a server, and then host an old (this) project on it.
 
 # Running the Code
 * Visit http://beers.daniellaurence.com/
