@@ -32,8 +32,8 @@ category1 = Category(name="IPA")
 session.add(category1)
 session.commit()
 
-Item1 = Item(user=user, name="Hoppy Bastard",
-                    description="Intense hoppy flavor, only for the cold and bitter at heart. Best served chilled.",
+Item1 = Item(user=user, name="Frigid IPA",
+                    description="Intense hoppy flavor, only for the cold and bitter at heart or taste. Best served chilled.",
                     picture_path="../static/images/med_ipa.jpg",
                     price="$5.00", ibu="90", abv="7", category=category1)
 
@@ -98,7 +98,7 @@ session.add(Item2)
 session.commit()
 
 Item3 = Item(user=user, name="Logger Lager",
-                    description="For those hardworking, blue collar, strong folk. There's nothing better.",
+                    description="For those hardworking, woods loving, thirsty folk. There's nothing better.",
                     picture_path="../static/images/tall_wheat.jpeg",
                     price="$1.00", ibu="12", abv="4.5", category=category2)
 
@@ -106,7 +106,7 @@ session.add(Item3)
 session.commit()
 
 Item4 = Item(user=user, name="Lady Lager",
-                    description="Here's any easy way to show strangers that you are fine and elegant, on a budget!",
+                    description="The most elegant lager in town, now at its most affordable.",
                     picture_path="../static/images/med_lager.jpeg",
                     price="$1.00", ibu="10", abv="4", category=category2)
 
@@ -121,15 +121,15 @@ Item5 = Item(user=user, name="Basic Beer Here",
 session.add(Item5)
 session.commit()
 
-Item6 = Item(user=user, name="Robust Lust Lager",
-                    description="This is an incredibly flavorfull and complex beer for a lager. Impress your friends or a hot date with this one of a kind beer.",
+Item6 = Item(user=user, name="Trusty Lager",
+                    description="This is an incredibly flavorfull and complex beer for a lager. Impress your friends with the flavor you can rely on.",
                     picture_path="../static/images/another_lager.jpeg",
                     price="$2.50", ibu="15", abv="6", category=category2)
 
 session.add(Item6)
 session.commit()
 
-Item7 = Item(user=user, name="Nice Slice",
+Item7 = Item(user=user, name="Nice Slice Lager",
                     description="Look no further. This lager is enjoyable and well worth the cost.",
                     picture_path="../static/images/dark_lager.jpg",
                     price="$1.50", ibu="10", abv="5", category=category2)
@@ -152,7 +152,7 @@ session.add(Item1)
 session.commit()
 
 
-Item2 = Item(user=user, name="Pale as a Ginger",
+Item2 = Item(user=user, name="Pale Ginger Root",
                     description="Unique pale ale with a subtle, yet delicious ginger afterbirth.",
                     picture_path="../static/images/light_foam.jpeg",
                     price="$3.00", ibu="30", abv="5", category=category3)
@@ -310,7 +310,7 @@ session.add(Item4)
 session.commit()
 
 Item5 = Item(user=user, name="Last Wheat Standing",
-                    description="A beer that can't be beat, so don't try. Just buy, drink and enjoy.",
+                    description="A beer that can't be beat, so don't try. Just buy, drink, and enjoy.",
                     picture_path="../static/images/medium_lager.jpeg",
                     price="$2.50", ibu="30", abv="6", category=category7)
 
